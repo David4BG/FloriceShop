@@ -1,0 +1,21 @@
+# Lokale Tooling / Editor-Konfig
+.claude/
+
+# Lokale Helper-Skripte und Design-Mockups – gehören nicht ins Theme
+mockups/
+
+# Auto-generierte Backups aus den Setting-Scripts
+config/*.backup-*.json
+templates/*.backup-*.json
+
+# OS / Editor
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+
+# Node (falls jemand mal lokal was installiert)
+node_modules/
+npm-debug.log
+yarn-error.log

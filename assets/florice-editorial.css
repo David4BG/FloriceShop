@@ -1,0 +1,184 @@
+/* ============================================================
+   Florice — Atelier Editorial overrides
+   Wird NACH base.css geladen, kann also Dawn-Defaults überschreiben.
+   ============================================================ */
+
+/* --- Italic-Magie für <em> in allen Headings ---------------- */
+h1 em, h2 em, h3 em, h4 em, h5 em, h6 em,
+.h1 em, .h2 em, .h3 em, .h4 em, .h5 em, .h6 em {
+  font-style: italic;
+  font-weight: inherit;
+  font-synthesis: none;
+}
+
+/* --- Headings: tighter letter spacing & Editorial-Linie ----- */
+h1, h2, .h1, .h2,
+.title-wrapper-with-link h2,
+.section-header__title {
+  letter-spacing: -0.025em;
+  line-height: 1;
+}
+
+h3, .h3 {
+  letter-spacing: -0.015em;
+}
+
+/* --- Produktkarten: Italic-Produktnamen --------------------- */
+.card__heading,
+.card-information .card__heading,
+.card__information .card__heading {
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  font-size: calc(var(--font-heading-scale) * 1.6rem);
+  line-height: 1.2;
+}
+
+.card__heading a {
+  text-decoration: none;
+}
+
+/* Preis darunter etwas kleiner, weniger Aufmerksamkeit */
+.price__regular .price-item,
+.card-information .price__regular .price-item {
+  font-size: 1.4rem;
+  letter-spacing: 0.02em;
+  opacity: 0.85;
+}
+
+/* --- Card flat, kein Border, eckig -------------------------- */
+.card-wrapper .card,
+.card-wrapper .card--standard,
+.card-wrapper .card--card {
+  border: 0;
+  box-shadow: none;
+  background: transparent;
+}
+
+/* --- Buttons: editorial – eckig, Caps, gespreizt ------------ */
+.button,
+.shopify-payment-button__button--unbranded,
+button.button,
+.shopify-payment-button [role='button'] {
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 1.2rem;
+  font-weight: 500;
+  border-radius: 0;
+  padding: 1.4rem 2.4rem;
+  min-height: 0;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.button:hover:not([disabled]) {
+  transform: translateY(-1px);
+}
+
+.button:not(.button--tertiary)::before,
+.button:not(.button--tertiary)::after {
+  display: none;
+}
+
+.button--secondary,
+.button--tertiary {
+  background: transparent;
+  border: 1px solid rgb(var(--color-foreground));
+  color: rgb(var(--color-foreground));
+}
+
+.button--tertiary {
+  border: 0;
+  border-bottom: 1px solid rgb(var(--color-foreground));
+  padding: 0.5rem 0;
+}
+
+/* --- Generische Eyebrow/Kicker-Klasse ----------------------- */
+.florice-eyebrow {
+  font-size: 1.1rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 500;
+  opacity: 0.65;
+  display: inline-block;
+  margin-bottom: 2rem;
+}
+
+/* --- Section: mehr Luft im Featured-Collection-Grid --------- */
+.collection .collection__title h2,
+.section-header__title {
+  margin-bottom: 4rem;
+}
+
+.featured-collection .title-wrapper-with-link,
+.collection .title-wrapper-with-link {
+  align-items: flex-end;
+}
+
+/* --- "View all"-Link als Text-Link statt Solid-Button ------- */
+.center .button--secondary.link,
+.collection__view-all .link {
+  font-size: 1.2rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+/* --- Footer: schmaler, ruhiger ------------------------------- */
+.footer__content-top {
+  padding-block-end: 4rem;
+}
+
+.footer__heading,
+.footer__title {
+  font-family: var(--font-heading-family);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+/* --- Header: nav links zarter ------------------------------- */
+.header__menu-item,
+.header__active-menu-item,
+.list-menu__item {
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+/* --- Image-Banner Heading: Italic-Hero-Feeling reuses ------- */
+.banner__heading {
+  letter-spacing: -0.035em;
+  line-height: 0.92;
+}
+
+.banner__heading em {
+  font-style: italic;
+  font-weight: inherit;
+}
+
+/* --- Collapsible Content (FAQ) ruhiger ---------------------- */
+.accordion summary {
+  font-family: var(--font-heading-family);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.8rem;
+  letter-spacing: -0.01em;
+  padding: 2rem 0;
+}
+
+.accordion + .accordion {
+  border-top: 1px solid rgb(var(--color-foreground) / 0.12);
+  margin-top: 0;
+  padding-top: 0;
+}
+
+/* --- Badges: ruhiger, ohne starke Farbe ---------------------- */
+.badge {
+  border-radius: 0;
+  padding: 0.4rem 0.65rem;
+  font-size: 1rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 500;
+  border-width: 0;
+}
