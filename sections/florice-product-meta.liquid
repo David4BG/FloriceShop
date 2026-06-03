@@ -1,0 +1,355 @@
+{%- liquid
+  assign has_any_value = false
+  for block in section.blocks
+    assign ns = block.settings.metafield_namespace | default: 'shopify'
+    assign key = block.settings.metafield_key
+    if key != blank
+      assign mfield = product.metafields[ns][key]
+      if mfield.value != blank
+        assign has_any_value = true
+        break
+      endif
+    endif
+  endfor
+-%}
+
+{%- if has_any_value -%}
+<div
+  class="florice-pmeta color-{{ section.settings.color_scheme }} gradient"
+  style="
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  "
+>
+  <div class="florice-pmeta__deco florice-pmeta__deco--tr" aria-hidden="true">
+    {% render 'florice-bloom', type: 'peony' %}
+  </div>
+  <div class="florice-pmeta__deco florice-pmeta__deco--bl" aria-hidden="true">
+    {% render 'florice-bloom', type: 'sprig' %}
+  </div>
+
+  <div class="florice-pmeta__inner page-width">
+    {%- if section.settings.eyebrow != blank -%}
+      <p class="florice-pmeta__eyebrow">
+        {% render 'florice-bloom', type: 'small' %}
+        <span>{{ section.settings.eyebrow | escape }}</span>
+        {% render 'florice-bloom', type: 'small' %}
+      </p>
+    {%- endif -%}
+
+    {%- if section.settings.title != blank -%}
+      <h2 class="florice-pmeta__title">{{ section.settings.title }}</h2>
+    {%- endif -%}
+
+    <ul class="florice-pmeta__list">
+      {%- for block in section.blocks -%}
+        {%- liquid
+          assign ns = block.settings.metafield_namespace | default: 'shopify'
+          assign key = block.settings.metafield_key
+          assign mfield = product.metafields[ns][key]
+          assign value_string = ''
+
+          if mfield.value != blank
+            if mfield.value.size and mfield.type contains 'list'
+              assign value_string = mfield.value | join: ' · '
+            else
+              assign value_string = mfield.value
+            endif
+          endif
+        -%}
+
+        {%- if value_string != '' and value_string != blank -%}
+          <li class="florice-pmeta__row" {{ block.shopify_attributes }}>
+            <span class="florice-pmeta__label">{{ block.settings.label | escape }}</span>
+            <span class="florice-pmeta__value">{{ value_string }}</span>
+          </li>
+        {%- endif -%}
+      {%- endfor -%}
+    </ul>
+
+    {%- if section.settings.footnote != blank -%}
+      <p class="florice-pmeta__footnote">{{ section.settings.footnote | escape }}</p>
+    {%- endif -%}
+  </div>
+</div>
+{%- endif -%}
+
+{% stylesheet %}
+.florice-pmeta {
+  position: relative;
+  overflow: hidden;
+}
+
+.florice-pmeta__deco {
+  position: absolute;
+  pointer-events: none;
+  color: rgb(var(--color-foreground));
+  z-index: 0;
+}
+
+.florice-pmeta__deco--tr {
+  top: 8%;
+  right: 4%;
+  width: 6rem;
+  opacity: 0.14;
+  transform: rotate(18deg);
+}
+
+.florice-pmeta__deco--bl {
+  bottom: 6%;
+  left: 5%;
+  width: 4.4rem;
+  opacity: 0.16;
+  transform: rotate(-12deg);
+}
+
+.florice-pmeta__inner {
+  position: relative;
+  z-index: 1;
+  max-width: 72rem;
+  margin: 0 auto;
+}
+
+.florice-pmeta__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1.05rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  margin: 0 0 1.6rem;
+  opacity: 0.7;
+  font-weight: 500;
+}
+
+.florice-pmeta__eyebrow .florice-bloom {
+  opacity: 0.55;
+}
+
+.florice-pmeta__title {
+  font-family: var(--font-heading-family);
+  font-style: italic;
+  font-weight: 300;
+  font-variation-settings: "opsz" 144;
+  font-size: clamp(2.8rem, 4vw, 4.4rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin: 0 0 3rem;
+  word-break: keep-all;
+  overflow-wrap: normal;
+  hyphens: none;
+}
+
+.florice-pmeta__title em {
+  font-style: normal;
+  font-weight: 300;
+}
+
+.florice-pmeta__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-top: 1px solid rgb(var(--color-foreground) / 0.22);
+}
+
+.florice-pmeta__row {
+  display: grid;
+  grid-template-columns: 16rem 1fr;
+  gap: 2rem;
+  padding: 1.4rem 0;
+  border-bottom: 1px solid rgb(var(--color-foreground) / 0.14);
+  align-items: baseline;
+}
+
+.florice-pmeta__label {
+  font-size: 1.05rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  font-weight: 500;
+}
+
+.florice-pmeta__value {
+  font-family: var(--font-heading-family);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.7rem;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+}
+
+.florice-pmeta__footnote {
+  margin: 2rem 0 0;
+  font-size: 1.15rem;
+  font-style: italic;
+  opacity: 0.6;
+}
+
+@media screen and (max-width: 749px) {
+  .florice-pmeta__row {
+    grid-template-columns: 10rem 1fr;
+    gap: 1.4rem;
+    padding: 1.2rem 0;
+  }
+  .florice-pmeta__value {
+    font-size: 1.5rem;
+  }
+  .florice-pmeta__deco--tr {
+    width: 4rem;
+    top: 4%;
+  }
+  .florice-pmeta__deco--bl {
+    width: 3.2rem;
+    bottom: 3%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .florice-pmeta__row {
+    grid-template-columns: 1fr;
+    gap: 0.3rem;
+    padding: 1rem 0;
+  }
+}
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Florice Product Meta",
+  "tag": "section",
+  "class": "section section-florice-pmeta",
+  "enabled_on": {
+    "templates": ["product"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Inhalt"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Über diese Blüte"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "Titel",
+      "default": "Botanische Details."
+    },
+    {
+      "type": "text",
+      "id": "footnote",
+      "label": "Fußnote (optional)",
+      "default": "Jede Blüte wird einzeln im Florice-Atelier gewickelt."
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Farb-Schema",
+      "default": "scheme-6"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding oben",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding unten",
+      "default": 80
+    }
+  ],
+  "blocks": [
+    {
+      "type": "spec_row",
+      "name": "Spec-Zeile",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label (deutsch, Caps)",
+          "default": "Farbe"
+        },
+        {
+          "type": "text",
+          "id": "metafield_namespace",
+          "label": "Metafield Namespace",
+          "info": "Standard für Shopify-Category-Metafields ist 'shopify'.",
+          "default": "shopify"
+        },
+        {
+          "type": "text",
+          "id": "metafield_key",
+          "label": "Metafield Key",
+          "info": "Z. B. color-pattern, decoration-material, arrangement, plant-material, plant-name."
+        }
+      ]
+    }
+  ],
+  "max_blocks": 12,
+  "presets": [
+    {
+      "name": "Florice Product Meta",
+      "category": "Florice",
+      "blocks": [
+        {
+          "type": "spec_row",
+          "settings": {
+            "label": "Farbe",
+            "metafield_namespace": "shopify",
+            "metafield_key": "color-pattern"
+          }
+        },
+        {
+          "type": "spec_row",
+          "settings": {
+            "label": "Dekorationsmaterial",
+            "metafield_namespace": "shopify",
+            "metafield_key": "decoration-material"
+          }
+        },
+        {
+          "type": "spec_row",
+          "settings": {
+            "label": "Arrangement",
+            "metafield_namespace": "shopify",
+            "metafield_key": "arrangement"
+          }
+        },
+        {
+          "type": "spec_row",
+          "settings": {
+            "label": "Pflanzenmaterial",
+            "metafield_namespace": "shopify",
+            "metafield_key": "plant-material"
+          }
+        },
+        {
+          "type": "spec_row",
+          "settings": {
+            "label": "Pflanzenname",
+            "metafield_namespace": "shopify",
+            "metafield_key": "plant-name"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
