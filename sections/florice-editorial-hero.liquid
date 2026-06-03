@@ -5,8 +5,11 @@
     padding-bottom: {{ section.settings.padding_bottom }}px;
   "
 >
-  <div class="florice-hero__bloom-bg" aria-hidden="true">
-    {% render 'florice-bloom', type: 'large' %}
+  <div class="florice-hero__bloom-bg florice-hero__bloom-bg--top" aria-hidden="true">
+    {% render 'florice-bloom', type: 'spray' %}
+  </div>
+  <div class="florice-hero__bloom-bg florice-hero__bloom-bg--bottom" aria-hidden="true">
+    {% render 'florice-bloom', type: 'peony' %}
   </div>
   <div class="florice-hero__inner">
     {%- if section.settings.image != blank -%}
@@ -82,28 +85,57 @@
 
 .florice-hero__bloom-bg {
   position: absolute;
-  top: -8%;
-  right: -10%;
-  width: 52%;
-  max-width: 62rem;
-  aspect-ratio: 1;
-  opacity: 0.07;
   pointer-events: none;
   color: rgb(var(--color-foreground));
   z-index: 0;
 }
 
-.florice-hero--right .florice-hero__bloom-bg {
+.florice-hero__bloom-bg--top {
+  top: -10%;
+  right: -8%;
+  width: 56%;
+  max-width: 64rem;
+  aspect-ratio: 1;
+  opacity: 0.11;
+}
+
+.florice-hero__bloom-bg--bottom {
+  bottom: 4%;
+  left: -2%;
+  width: 14rem;
+  opacity: 0.13;
+  transform: rotate(-15deg);
+}
+
+.florice-hero--right .florice-hero__bloom-bg--top {
   right: auto;
-  left: -10%;
+  left: -8%;
+}
+
+.florice-hero--right .florice-hero__bloom-bg--bottom {
+  left: auto;
+  right: -2%;
+  transform: rotate(15deg);
 }
 
 @media screen and (max-width: 1099px) {
-  .florice-hero__bloom-bg {
-    top: -6%;
-    right: -20%;
-    width: 70%;
-    opacity: 0.06;
+  .florice-hero__bloom-bg--top {
+    top: -4%;
+    right: -28%;
+    width: 75%;
+    opacity: 0.09;
+  }
+  .florice-hero__bloom-bg--bottom {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .florice-hero__bloom-bg--top {
+    top: -2%;
+    right: -40%;
+    width: 90%;
+    opacity: 0.08;
   }
 }
 

@@ -26,9 +26,31 @@
 
   <div class="florice-anlaesse__grid page-width">
     {%- for block in section.blocks -%}
+      {%- liquid
+        assign icon_override = block.settings.icon
+        assign title_lower = block.settings.title | downcase
+        if icon_override != blank and icon_override != 'auto'
+          assign tile_icon = icon_override
+        elsif title_lower contains 'hochzeit'
+          assign tile_icon = 'peony'
+        elsif title_lower contains 'geschenk'
+          assign tile_icon = 'wildflower'
+        elsif title_lower contains 'trauer'
+          assign tile_icon = 'branch'
+        elsif title_lower contains 'wohnen' or title_lower contains 'deko'
+          assign tile_icon = 'tulip'
+        elsif title_lower contains 'liebe' or title_lower contains 'valentin'
+          assign tile_icon = 'rose-stem'
+        elsif title_lower contains 'sommer' or title_lower contains 'sonne'
+          assign tile_icon = 'sunflower'
+        else
+          assign tile_icon = 'sprig'
+        endif
+      -%}
+
       <a
         href="{{ block.settings.link | default: '#' }}"
-        class="florice-anlaesse__tile"
+        class="florice-anlaesse__tile florice-anlaesse__tile--{{ tile_icon }}"
         {{ block.shopify_attributes }}
       >
         <div class="florice-anlaesse__media">
@@ -43,9 +65,14 @@
                 alt: block.settings.title
             }}
           {%- else -%}
-            {{ 'collection-2' | placeholder_svg_tag: 'placeholder-svg' }}
+            <div class="florice-anlaesse__placeholder" aria-hidden="true">
+              {% render 'florice-bloom', type: tile_icon %}
+            </div>
           {%- endif -%}
           <span class="florice-anlaesse__number">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>
+          <span class="florice-anlaesse__floral" aria-hidden="true" data-bloom="{{ tile_icon }}">
+            {% render 'florice-bloom', type: tile_icon %}
+          </span>
         </div>
         <div class="florice-anlaesse__caption">
           <span class="florice-anlaesse__kicker">{{ block.settings.kicker | escape }}</span>
@@ -134,7 +161,60 @@
   position: relative;
   aspect-ratio: 3 / 4;
   overflow: hidden;
-  background: rgb(var(--color-background) / 0.6);
+  background: rgb(var(--color-foreground) / 0.06);
+}
+
+.florice-anlaesse__placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgb(var(--color-foreground));
+  opacity: 0.32;
+}
+
+.florice-anlaesse__placeholder .florice-bloom {
+  width: 55%;
+  height: auto;
+  max-width: 14rem;
+}
+
+.florice-anlaesse__floral {
+  position: absolute;
+  bottom: 1.4rem;
+  right: 1.4rem;
+  width: 4.2rem;
+  height: 5.6rem;
+  color: white;
+  opacity: 0.9;
+  filter: drop-shadow(0 1px 4px rgba(0,0,0,0.4));
+  transition: transform 0.5s cubic-bezier(0.16, 0.84, 0.44, 1);
+  pointer-events: none;
+}
+
+.florice-anlaesse__floral[data-bloom="lavender"] {
+  width: 3rem;
+}
+
+.florice-anlaesse__floral[data-bloom="peony"],
+.florice-anlaesse__floral[data-bloom="sunflower"] {
+  width: 4.8rem;
+}
+
+.florice-anlaesse__tile:hover .florice-anlaesse__floral {
+  transform: rotate(-8deg) translateY(-3px);
+}
+
+.florice-anlaesse__placeholder + .florice-anlaesse__number,
+.florice-anlaesse__placeholder ~ .florice-anlaesse__floral {
+  color: rgb(var(--color-foreground));
+  text-shadow: none;
+}
+
+.florice-anlaesse__placeholder ~ .florice-anlaesse__floral {
+  filter: none;
+  opacity: 0.6;
 }
 
 .florice-anlaesse__media img,
@@ -230,6 +310,19 @@
   .florice-anlaesse__grid {
     gap: 0.8rem;
   }
+  .florice-anlaesse__floral {
+    width: 3.4rem;
+    height: 4.6rem;
+    bottom: 1rem;
+    right: 1rem;
+  }
+  .florice-anlaesse__floral[data-bloom="peony"],
+  .florice-anlaesse__floral[data-bloom="sunflower"] {
+    width: 3.8rem;
+  }
+  .florice-anlaesse__number {
+    font-size: 1.4rem;
+  }
 }
 {% endstylesheet %}
 
@@ -310,13 +403,31 @@
           "type": "text",
           "id": "kicker",
           "label": "Kicker (kleiner Caps-Text)",
-          "default": "Kollektion"
+          "default": "Sortiment"
         },
         {
           "type": "text",
           "id": "title",
           "label": "Anlass-Name",
           "default": "Hochzeit"
+        },
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Blüten-Icon",
+          "info": "Standard: passend zum Anlass-Name.",
+          "options": [
+            { "value": "auto", "label": "Auto (Anlass-Name)" },
+            { "value": "peony", "label": "Pfingstrose" },
+            { "value": "rose-stem", "label": "Rose" },
+            { "value": "sunflower", "label": "Sonnenblume" },
+            { "value": "tulip", "label": "Tulpe" },
+            { "value": "lavender", "label": "Lavendel" },
+            { "value": "wildflower", "label": "Wildblume" },
+            { "value": "branch", "label": "Zweig" },
+            { "value": "sprig", "label": "Allgemein" }
+          ],
+          "default": "auto"
         },
         {
           "type": "url",

@@ -26,17 +26,39 @@
 
   <div class="florice-sortiment__grid page-width">
     {%- for block in section.blocks -%}
+      {%- liquid
+        assign icon_override = block.settings.icon
+        assign latin_lower = block.settings.latin | downcase
+        if icon_override != blank and icon_override != 'auto'
+          assign bloom_icon = icon_override
+        elsif latin_lower contains 'paeonia'
+          assign bloom_icon = 'peony'
+        elsif latin_lower contains 'rosa'
+          assign bloom_icon = 'rose-stem'
+        elsif latin_lower contains 'helianthus'
+          assign bloom_icon = 'sunflower'
+        elsif latin_lower contains 'tulipa'
+          assign bloom_icon = 'tulip'
+        elsif latin_lower contains 'lavandula'
+          assign bloom_icon = 'lavender'
+        elsif latin_lower contains 'eustoma' or latin_lower contains 'cosmos'
+          assign bloom_icon = 'wildflower'
+        else
+          assign bloom_icon = 'sprig'
+        endif
+      -%}
+
       <a
         href="{{ block.settings.link | default: '#' }}"
-        class="florice-sortiment__item"
+        class="florice-sortiment__item florice-sortiment__item--{{ bloom_icon }}"
         {{ block.shopify_attributes }}
       >
         {%- if block.settings.badge != blank -%}
           <span class="florice-sortiment__badge">{{ block.settings.badge | escape }}</span>
         {%- endif -%}
 
-        <div class="florice-sortiment__icon">
-          {% render 'florice-bloom', type: 'sprig' %}
+        <div class="florice-sortiment__icon" data-bloom="{{ bloom_icon }}">
+          {% render 'florice-bloom', type: bloom_icon %}
         </div>
 
         <span class="florice-sortiment__latin">{{ block.settings.latin | escape }}</span>
@@ -168,17 +190,31 @@
 
 .florice-sortiment__icon {
   margin: 0 0 1.8rem;
-  opacity: 0.75;
+  opacity: 0.85;
   transition: transform 0.5s cubic-bezier(0.16, 0.84, 0.44, 1);
+  min-height: 5.6rem;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
 }
 
 .florice-sortiment__icon .florice-bloom {
-  width: 3rem;
-  height: 4rem;
+  width: 4rem;
+  height: 5.6rem;
+}
+
+.florice-sortiment__icon[data-bloom="peony"] .florice-bloom,
+.florice-sortiment__icon[data-bloom="rose-stem"] .florice-bloom {
+  width: 4.4rem;
+  height: 5.8rem;
+}
+
+.florice-sortiment__icon[data-bloom="lavender"] .florice-bloom {
+  width: 3.2rem;
 }
 
 .florice-sortiment__item:hover .florice-sortiment__icon {
-  transform: rotate(-6deg) translateY(-3px);
+  transform: rotate(-4deg) translateY(-2px);
 }
 
 .florice-sortiment__latin {
@@ -248,6 +284,12 @@
 @media screen and (max-width: 480px) {
   .florice-sortiment__grid {
     grid-template-columns: 1fr;
+  }
+  .florice-sortiment__item {
+    padding: 2.8rem 2rem 2.4rem;
+  }
+  .florice-sortiment__latin {
+    letter-spacing: 0.2em;
   }
 }
 {% endstylesheet %}
@@ -349,6 +391,24 @@
           "id": "badge",
           "label": "Badge (optional)",
           "info": "z. B. „Saison\", „Bestseller\", „Neu\""
+        },
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Blüten-Icon",
+          "info": "Standard: passend zum Latein-Namen.",
+          "options": [
+            { "value": "auto", "label": "Auto (Latein-Name)" },
+            { "value": "peony", "label": "Pfingstrose" },
+            { "value": "rose-stem", "label": "Rose" },
+            { "value": "sunflower", "label": "Sonnenblume" },
+            { "value": "tulip", "label": "Tulpe" },
+            { "value": "lavender", "label": "Lavendel" },
+            { "value": "wildflower", "label": "Wildblume" },
+            { "value": "branch", "label": "Zweig" },
+            { "value": "sprig", "label": "Allgemein (Sprig)" }
+          ],
+          "default": "auto"
         },
         {
           "type": "url",

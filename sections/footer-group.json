@@ -34,9 +34,9 @@
         "tagline": "Blumen für die Ewigkeit — handgewickelt im Florice Atelier.",
         "big_wordmark": "florice",
         "show_payment": true,
-        "color_scheme": "scheme-1",
-        "padding_top": 100,
-        "padding_bottom": 48
+        "color_scheme": "scheme-9",
+        "padding_top": 80,
+        "padding_bottom": 36
       }
     }
   },
