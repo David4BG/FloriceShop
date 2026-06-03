@@ -24,7 +24,7 @@
           "settings": {
             "heading": "Herstellerinformationen (GPSR)",
             "icon": "clipboard",
-            "content": "<p>{{ product.metafields.custom.herstellerinformationen | metafield_tag }}</p>",
+            "content": "<p>Florice Atelier — Manufaktur für handgewickelte Kunstblumen, Deutschland. Kontakt: hallo@florice.de</p><p><em>Tipp: Pro-Produkt-Angaben können im Shopify-Admin als Metafeld <code>custom.herstellerinformationen</code> eingerichtet und hier per &bdquo;Dynamische Quelle verbinden&ldquo; gebunden werden.</em></p>",
             "page": ""
           }
         },
@@ -33,7 +33,7 @@
           "settings": {
             "heading": "Produktinformationen",
             "icon": "box",
-            "content": "<p>Handgefertigte Dekoblume aus Pfeifenreiniger (Chenilledraht).<br/><br/><strong>Produktdetails:</strong></p><ul><li>Material: Pfeifenreiniger (Drahtkern mit Textilummantelung)</li><li>Höhe: {{ product.metafields.custom.grose.value }}</li></ul>",
+            "content": "<p>Handgefertigte Dekoblume aus Pfeifenreiniger (Chenilledraht).<br/><br/><strong>Produktdetails:</strong></p><ul><li>Material: Pfeifenreiniger (Drahtkern mit Textilummantelung)</li><li>Höhe: variiert je Variante (siehe Auswahl)</li></ul>",
             "page": ""
           }
         },

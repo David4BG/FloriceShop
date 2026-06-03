@@ -88,7 +88,7 @@
         "columns_mobile": "2",
         "swipe_on_mobile": true,
         "padding_top": 100,
-        "padding_bottom": 112
+        "padding_bottom": 100
       }
     },
     "atelier_story": {
