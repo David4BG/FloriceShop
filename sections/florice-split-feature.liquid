@@ -27,7 +27,10 @@
 
     <div class="florice-split__content">
       {%- if section.settings.eyebrow != blank -%}
-        <p class="florice-split__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+        <p class="florice-split__eyebrow">
+          {% render 'florice-bloom', type: 'small' %}
+          <span>{{ section.settings.eyebrow | escape }}</span>
+        </p>
       {%- endif -%}
       {%- if section.settings.title != blank -%}
         <h2 class="florice-split__title">{{ section.settings.title }}</h2>
@@ -110,12 +113,19 @@
 }
 
 .florice-split__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
   font-size: 1.1rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   margin: 0 0 1.8rem;
-  opacity: 0.65;
+  opacity: 0.7;
   font-weight: 500;
+}
+
+.florice-split__eyebrow .florice-bloom {
+  opacity: 0.6;
 }
 
 .florice-split__title {

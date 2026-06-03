@@ -8,7 +8,10 @@
   <div class="florice-atelier__inner page-width">
     <div class="florice-atelier__text">
       {%- if section.settings.eyebrow != blank -%}
-        <p class="florice-atelier__eyebrow">{{ section.settings.eyebrow }}</p>
+        <p class="florice-atelier__eyebrow">
+          {% render 'florice-bloom', type: 'small' %}
+          <span>{{ section.settings.eyebrow }}</span>
+        </p>
       {%- endif -%}
 
       {%- if section.settings.title != blank -%}
@@ -75,12 +78,19 @@
 }
 
 .florice-atelier__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
   font-size: 1.1rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   margin: 0 0 2rem;
-  opacity: 0.65;
+  opacity: 0.7;
   font-weight: 500;
+}
+
+.florice-atelier__eyebrow .florice-bloom {
+  opacity: 0.6;
 }
 
 .florice-atelier__title {

@@ -7,7 +7,11 @@
 >
   <div class="florice-anlaesse__head page-width">
     {%- if section.settings.eyebrow != blank -%}
-      <p class="florice-anlaesse__eyebrow">{{ section.settings.eyebrow }}</p>
+      <p class="florice-anlaesse__eyebrow">
+        {% render 'florice-bloom', type: 'small' %}
+        <span>{{ section.settings.eyebrow }}</span>
+        {% render 'florice-bloom', type: 'small' %}
+      </p>
     {%- endif -%}
     {%- if section.settings.title != blank -%}
       <h2 class="florice-anlaesse__title">{{ section.settings.title }}</h2>
@@ -15,6 +19,9 @@
     {%- if section.settings.intro != blank -%}
       <div class="florice-anlaesse__intro rte">{{ section.settings.intro }}</div>
     {%- endif -%}
+    <div class="florice-anlaesse__divider" aria-hidden="true">
+      {% render 'florice-bloom', type: 'divider' %}
+    </div>
   </div>
 
   <div class="florice-anlaesse__grid page-width">
@@ -63,12 +70,24 @@
 }
 
 .florice-anlaesse__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.1rem;
   font-size: 1.1rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   margin: 0 0 1.5rem;
-  opacity: 0.65;
+  opacity: 0.7;
   font-weight: 500;
+}
+
+.florice-anlaesse__eyebrow .florice-bloom {
+  opacity: 0.55;
+}
+
+.florice-anlaesse__divider {
+  margin: 1.8rem auto 0;
+  opacity: 0.7;
 }
 
 .florice-anlaesse__title {

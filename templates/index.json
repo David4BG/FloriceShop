@@ -3,15 +3,15 @@
     "hero_banner": {
       "type": "florice-editorial-hero",
       "settings": {
-        "kicker": "No. 01 · Spring Editorial · Florice Atelier",
+        "kicker": "Sortiment Frühling · No. 01 · Florice",
         "headline": "Blumen für die <em>Ewigkeit.</em>",
-        "subtext": "<p>Handgewickelte Blüten aus dem Florice-Atelier. Stunden Geduld, eine Hand, ein Faden — und ein Strauß, der nicht welkt. Geschenkt für immer, nicht für eine Woche.</p>",
-        "primary_button_label": "Kollektion entdecken",
+        "subtext": "<p>Handgewickelte Sträuße aus dem Florice-Atelier. Stunden Geduld, eine Hand, ein Faden — und eine Blüte, die nicht welkt. Ein Blumengeschäft für Sträuße, die bleiben.</p>",
+        "primary_button_label": "Ins Sortiment",
         "primary_button_link": "shopify://collections/alle-produkte",
-        "secondary_link_label": "Aus dem Atelier",
+        "secondary_link_label": "Aus der Werkstatt",
         "secondary_link_link": "",
         "image_position": "left",
-        "image_caption": "Ewige Sonnenblumen · Bouquet No. 14",
+        "image_caption": "Ewige Sonnenblumen · Strauß No. 14",
         "color_scheme": "scheme-1",
         "padding_top": 80,
         "padding_bottom": 100
@@ -23,7 +23,7 @@
         "tile_hochzeit": {
           "type": "tile",
           "settings": {
-            "kicker": "Kollektion",
+            "kicker": "Sortiment",
             "title": "Hochzeit",
             "link": "shopify://collections/hochzeit"
           }
@@ -31,7 +31,7 @@
         "tile_geschenk": {
           "type": "tile",
           "settings": {
-            "kicker": "Kollektion",
+            "kicker": "Sortiment",
             "title": "Geschenk",
             "link": "shopify://collections/geschenke"
           }
@@ -39,7 +39,7 @@
         "tile_trauer": {
           "type": "tile",
           "settings": {
-            "kicker": "Kollektion",
+            "kicker": "Sortiment",
             "title": "Trauer",
             "link": "shopify://collections/trauer"
           }
@@ -47,7 +47,7 @@
         "tile_wohnen": {
           "type": "tile",
           "settings": {
-            "kicker": "Kollektion",
+            "kicker": "Sortiment",
             "title": "Wohnen",
             "link": "shopify://collections/wohnen"
           }
@@ -55,10 +55,92 @@
       },
       "block_order": ["tile_hochzeit", "tile_geschenk", "tile_trauer", "tile_wohnen"],
       "settings": {
-        "eyebrow": "Für jeden Moment",
-        "title": "Anlässe, die <em>bleiben.</em>",
-        "intro": "<p>Vier Sammlungen, jede mit eigener Stimmung. Wähle den Moment — wir wickeln die passende Blüte.</p>",
+        "eyebrow": "Sortiment nach Anlass",
+        "title": "Sträuße, die <em>bleiben.</em>",
+        "intro": "<p>Vier Sammlungen aus der Werkstatt — jede für einen besonderen Moment komponiert.</p>",
         "color_scheme": "scheme-2",
+        "padding_top": 120,
+        "padding_bottom": 120
+      }
+    },
+    "sortiment": {
+      "type": "florice-sortiment",
+      "blocks": {
+        "sorte_paeonia": {
+          "type": "sorte",
+          "settings": {
+            "latin": "Paeonia",
+            "name": "Pfingstrose",
+            "meaning": "Wohlstand · Hingabe",
+            "badge": "Saison",
+            "link": ""
+          }
+        },
+        "sorte_rosa": {
+          "type": "sorte",
+          "settings": {
+            "latin": "Rosa",
+            "name": "Rose",
+            "meaning": "Liebe · Leidenschaft",
+            "badge": "",
+            "link": ""
+          }
+        },
+        "sorte_helianthus": {
+          "type": "sorte",
+          "settings": {
+            "latin": "Helianthus",
+            "name": "Sonnenblume",
+            "meaning": "Wärme · Lebensfreude",
+            "badge": "Bestseller",
+            "link": ""
+          }
+        },
+        "sorte_tulipa": {
+          "type": "sorte",
+          "settings": {
+            "latin": "Tulipa",
+            "name": "Tulpe",
+            "meaning": "Eleganz · Frühling",
+            "badge": "",
+            "link": ""
+          }
+        },
+        "sorte_lavandula": {
+          "type": "sorte",
+          "settings": {
+            "latin": "Lavandula",
+            "name": "Lavendel",
+            "meaning": "Ruhe · Klarheit",
+            "badge": "",
+            "link": ""
+          }
+        },
+        "sorte_eustoma": {
+          "type": "sorte",
+          "settings": {
+            "latin": "Eustoma",
+            "name": "Wildblume",
+            "meaning": "Charme · Natürlichkeit",
+            "badge": "Neu",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "sorte_paeonia",
+        "sorte_rosa",
+        "sorte_helianthus",
+        "sorte_tulipa",
+        "sorte_lavandula",
+        "sorte_eustoma"
+      ],
+      "settings": {
+        "eyebrow": "Florice Sortiment",
+        "title": "Blütensorten aus dem <em>Atelier.</em>",
+        "intro": "<p>Jede Sorte mit eigenem Charakter und eigener Bedeutung. Handgewickelt nach botanischem Vorbild — und für immer.</p>",
+        "item_cta": "Ansehen",
+        "color_scheme": "scheme-6",
         "padding_top": 120,
         "padding_bottom": 120
       }
@@ -102,7 +184,7 @@
       "settings": {
         "eyebrow": "Aus dem Atelier",
         "title": "Vier Stunden für eine <em>einzige</em> Blüte.",
-        "body": "<p>Pfeifenreiniger, Draht, ein wenig Geduld. Keine Maschine, keine Massenware. Florice-Blumen werden Stiel für Stiel gewickelt — am Tisch, mit Tageslicht, ohne Eile.</p>",
+        "body": "<p>Pfeifenreiniger, Draht, ein wenig Geduld. Keine Maschine, keine Massenware. Florice-Blumen werden Stiel für Stiel gewickelt — am Tisch, mit Tageslicht, ohne Eile. Wie in einem klassischen Blumengeschäft, nur dass deine Blüten Jahre überdauern.</p>",
         "link_label": "So entsteht eine Florice",
         "link_url": "",
         "color_scheme": "scheme-3",
@@ -116,7 +198,7 @@
         "quote": "<p>Eine Florice ist kein Strauß. Sie ist eine Erinnerung, <em>die nicht welkt.</em></p>",
         "attribution": "Florice Atelier",
         "attribution_meta": "Manufaktur · Deutschland",
-        "color_scheme": "scheme-2",
+        "color_scheme": "scheme-7",
         "padding_top": 140,
         "padding_bottom": 140
       }
@@ -130,7 +212,7 @@
       },
       "block_order": ["spec_1", "spec_2", "spec_3"],
       "settings": {
-        "eyebrow": "Material",
+        "eyebrow": "Material · Pflege",
         "title": "Draht, Faden, <em>Geduld.</em>",
         "body": "<p>Florice-Blüten entstehen aus weichem Chenille-Draht. Kein Plastik, das nach Plastik aussieht. Stattdessen ein Material, das die Haptik echter Petalen erinnert — und Jahre überdauert. Jeder Stiel wird einzeln gewickelt, jede Blüte ist ein Unikat.</p>",
         "cta_label": "Mehr über das Atelier",
@@ -138,8 +220,8 @@
         "image_caption": "Atelier-Tisch · Tageslicht",
         "layout": "right",
         "color_scheme": "scheme-1",
-        "padding_top": 120,
-        "padding_bottom": 120
+        "padding_top": 100,
+        "padding_bottom": 100
       }
     },
     "faq": {
@@ -168,7 +250,7 @@
           "settings": {
             "heading": "Für welche Anlässe geeignet?",
             "icon": "none",
-            "row_content": "<p>Geburtstag, Jahrestag, Valentinstag, Muttertag — oder einfach als kleine Geste. Auch als bleibende Erinnerung für Anlässe, an denen frische Blumen zu vergänglich wären.</p>",
+            "row_content": "<p>Hochzeit, Geburtstag, Jahrestag, Trauer, Muttertag — oder einfach als kleine Geste. Auch als bleibende Erinnerung für Momente, an denen frische Blumen zu vergänglich wären.</p>",
             "page": ""
           }
         },
@@ -203,7 +285,7 @@
       "settings": {
         "eyebrow": "Brief aus dem Atelier",
         "title": "Was als nächstes <em>blüht.</em>",
-        "subtext": "<p>Sechs Briefe im Jahr. Neue Kollektionen zuerst, ein Blick in den Wickeltisch und der gelegentliche Rabatt — kein Spam, kein Daily-Sale.</p>",
+        "subtext": "<p>Sechs Briefe im Jahr. Neue Sorten zuerst, ein Blick in den Wickeltisch und der gelegentliche Rabatt — kein Spam, kein Daily-Sale.</p>",
         "placeholder": "Deine E-Mail-Adresse",
         "button_label": "Abonnieren",
         "fine_print": "Abmeldung jederzeit mit einem Klick. Datenschutz selbstverständlich.",
@@ -225,6 +307,7 @@
   "order": [
     "hero_banner",
     "anlaesse",
+    "sortiment",
     "featured_collection",
     "atelier_story",
     "pullquote",
