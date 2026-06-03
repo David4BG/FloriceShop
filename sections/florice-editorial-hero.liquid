@@ -76,12 +76,12 @@
 .florice-hero__inner {
   display: grid;
   grid-template-columns: 1.05fr 1fr;
-  gap: 4rem;
+  gap: 3rem;
   align-items: center;
   max-width: var(--page-width, 144rem);
   margin: 0 auto;
-  padding: 0 4rem;
-  min-height: 100vh;
+  padding: 0 3rem;
+  min-height: 88vh;
 }
 
 .florice-hero--right .florice-hero__inner {
@@ -91,7 +91,7 @@
 .florice-hero--right .florice-hero__image {
   order: 2;
   margin-left: 0;
-  margin-right: -4rem;
+  margin-right: -3rem;
 }
 
 .florice-hero--right .florice-hero__text {
@@ -103,7 +103,7 @@
   position: relative;
   aspect-ratio: 4 / 5;
   overflow: hidden;
-  margin-left: -4rem;
+  margin-left: -3rem;
   background: rgb(var(--color-background) / 0.6);
 }
 
@@ -152,11 +152,14 @@
   font-family: var(--font-heading-family);
   font-weight: 300;
   font-style: normal;
-  font-size: clamp(5.6rem, 8vw, 11.2rem);
-  line-height: 0.92;
-  letter-spacing: -0.035em;
+  font-size: clamp(4rem, 6.4vw, 8.8rem);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
   margin: 0 0 2.5rem;
   color: rgb(var(--color-foreground));
+  word-break: keep-all;
+  overflow-wrap: normal;
+  hyphens: none;
 }
 
 .florice-hero__headline em {
@@ -232,10 +235,10 @@
   opacity: 0.65;
 }
 
-@media screen and (max-width: 989px) {
+@media screen and (max-width: 1099px) {
   .florice-hero__inner {
     grid-template-columns: 1fr;
-    gap: 3rem;
+    gap: 2.5rem;
     min-height: auto;
     padding: 0;
   }
@@ -249,16 +252,18 @@
 
   .florice-hero__text,
   .florice-hero--right .florice-hero__text {
-    padding: 0 1.5rem;
+    padding: 0 1.5rem 2rem;
     order: 2;
+    max-width: none;
   }
 
   .florice-hero__headline {
-    font-size: clamp(4rem, 12vw, 6rem);
+    font-size: clamp(3.6rem, 10vw, 6.4rem);
   }
 
   .florice-hero__sub {
     font-size: 1.5rem;
+    max-width: none;
   }
 
   .florice-hero__cta-group {
