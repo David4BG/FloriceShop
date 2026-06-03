@@ -215,27 +215,6 @@
         "padding_bottom": 88
       }
     },
-    "split_material": {
-      "type": "florice-split-feature",
-      "blocks": {
-        "spec_1": { "type": "spec", "settings": { "label": "Material", "value": "Chenille-Draht · Textil" } },
-        "spec_2": { "type": "spec", "settings": { "label": "Herkunft", "value": "Manufaktur in Deutschland" } },
-        "spec_3": { "type": "spec", "settings": { "label": "Haltbarkeit", "value": "Mehrere Jahre" } }
-      },
-      "block_order": ["spec_1", "spec_2", "spec_3"],
-      "settings": {
-        "eyebrow": "Material · Pflege",
-        "title": "Draht, Faden, <em>Geduld.</em>",
-        "body": "<p>Florice-Blüten entstehen aus weichem Chenille-Draht. Kein Plastik, das nach Plastik aussieht. Stattdessen ein Material, das die Haptik echter Petalen erinnert — und Jahre überdauert. Jeder Stiel wird einzeln gewickelt, jede Blüte ist ein Unikat.</p>",
-        "cta_label": "Mehr über das Atelier",
-        "cta_link": "",
-        "image_caption": "Atelier-Tisch · Tageslicht",
-        "layout": "right",
-        "color_scheme": "scheme-8",
-        "padding_top": 60,
-        "padding_bottom": 60
-      }
-    },
     "faq": {
       "type": "collapsible-content",
       "blocks": {
@@ -292,20 +271,6 @@
         "padding_bottom": 32
       }
     },
-    "newsletter": {
-      "type": "florice-newsletter",
-      "settings": {
-        "eyebrow": "Brief aus dem Atelier",
-        "title": "Was als nächstes <em>blüht.</em>",
-        "subtext": "<p>Sechs Briefe im Jahr. Neue Sorten zuerst, ein Blick in den Wickeltisch und der gelegentliche Rabatt — kein Spam, kein Daily-Sale.</p>",
-        "placeholder": "Deine E-Mail-Adresse",
-        "button_label": "Abonnieren",
-        "fine_print": "Abmeldung jederzeit mit einem Klick. Datenschutz selbstverständlich.",
-        "color_scheme": "scheme-9",
-        "padding_top": 80,
-        "padding_bottom": 80
-      }
-    },
     "custom_liquid_kR9yie": {
       "type": "custom-liquid",
       "settings": {
@@ -324,9 +289,7 @@
     "featured_collection",
     "atelier_story",
     "pullquote",
-    "split_material",
     "faq",
-    "newsletter",
     "custom_liquid_kR9yie"
   ]
 }
