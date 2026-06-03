@@ -51,6 +51,28 @@
         else
           assign tile_icon = 'sprig'
         endif
+
+        if title_lower contains 'hochzeit'
+          assign tile_fallback = 'https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=800&q=80'
+        elsif title_lower contains 'geschenk'
+          assign tile_fallback = 'https://images.unsplash.com/photo-1487530811176-3780de880c2d?auto=format&fit=crop&w=800&q=80'
+        elsif title_lower contains 'trauer'
+          assign tile_fallback = 'https://images.unsplash.com/photo-1518895949257-7621c3c786d7?auto=format&fit=crop&w=800&q=80'
+        elsif title_lower contains 'wohnen' or title_lower contains 'deko'
+          assign tile_fallback = 'https://images.unsplash.com/photo-1455659817273-f96807779a8a?auto=format&fit=crop&w=800&q=80'
+        else
+          assign fallback_idx = forloop.index0 | modulo: 4
+          case fallback_idx
+            when 0
+              assign tile_fallback = 'https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=800&q=80'
+            when 1
+              assign tile_fallback = 'https://images.unsplash.com/photo-1487530811176-3780de880c2d?auto=format&fit=crop&w=800&q=80'
+            when 2
+              assign tile_fallback = 'https://images.unsplash.com/photo-1518895949257-7621c3c786d7?auto=format&fit=crop&w=800&q=80'
+            when 3
+              assign tile_fallback = 'https://images.unsplash.com/photo-1455659817273-f96807779a8a?auto=format&fit=crop&w=800&q=80'
+          endcase
+        endif
       -%}
 
       <a
@@ -70,9 +92,7 @@
                 alt: block.settings.title
             }}
           {%- else -%}
-            <div class="florice-anlaesse__placeholder" aria-hidden="true">
-              {% render 'florice-bloom', type: tile_icon %}
-            </div>
+            <img src="{{ tile_fallback }}" alt="{{ block.settings.title | escape }} — Florice" loading="lazy">
           {%- endif -%}
           <span class="florice-anlaesse__number">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>
           <span class="florice-anlaesse__floral" aria-hidden="true" data-bloom="{{ tile_icon }}">

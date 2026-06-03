@@ -51,7 +51,15 @@
                   alt: block.settings.image.alt
               }}
             {%- else -%}
-              {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+              {%- assign atelier_idx = forloop.index0 | modulo: 3 -%}
+              {%- case atelier_idx -%}
+                {%- when 0 -%}
+                  <img src="https://images.unsplash.com/photo-1518895949257-7621c3c786d7?auto=format&fit=crop&w=800&q=80" alt="Florice Atelier — Wickeltisch" loading="lazy">
+                {%- when 1 -%}
+                  <img src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=800&q=80" alt="Florice Atelier — Blütenstudie" loading="lazy">
+                {%- when 2 -%}
+                  <img src="https://images.unsplash.com/photo-1487530811176-3780de880c2d?auto=format&fit=crop&w=800&q=80" alt="Florice Atelier — Strauß" loading="lazy">
+              {%- endcase -%}
             {%- endif -%}
           </figure>
         {%- endif -%}

@@ -12,8 +12,8 @@
     {% render 'florice-bloom', type: 'peony' %}
   </div>
   <div class="florice-hero__inner">
-    {%- if section.settings.image != blank -%}
-      <div class="florice-hero__image">
+    <div class="florice-hero__image">
+      {%- if section.settings.image != blank -%}
         {{
           section.settings.image
           | image_url: width: 1600
@@ -24,15 +24,20 @@
             widths: '375, 550, 750, 1100, 1500, 1600',
             alt: section.settings.image.alt
         }}
-        {%- if section.settings.image_caption != blank -%}
-          <span class="florice-hero__caption">{{ section.settings.image_caption }}</span>
-        {%- endif -%}
-      </div>
-    {%- else -%}
-      <div class="florice-hero__image florice-hero__image--placeholder">
-        {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
-      </div>
-    {%- endif -%}
+      {%- else -%}
+        <img
+          src="{{ section.settings.fallback_image_url | default: 'https://images.unsplash.com/photo-1597848212624-a19eb35e2651?auto=format&fit=crop&w=1600&q=80' }}"
+          alt="{{ section.settings.image_caption | default: 'Florice Bouquet' | escape }}"
+          loading="eager"
+          fetchpriority="high"
+          width="1600"
+          height="2000"
+        >
+      {%- endif -%}
+      {%- if section.settings.image_caption != blank -%}
+        <span class="florice-hero__caption">{{ section.settings.image_caption }}</span>
+      {%- endif -%}
+    </div>
 
     <div class="florice-hero__text">
       {%- if section.settings.kicker != blank -%}
@@ -144,12 +149,12 @@
   z-index: 1;
   display: grid;
   grid-template-columns: 1.05fr 1fr;
-  gap: 3rem;
+  gap: 4rem;
   align-items: center;
   max-width: var(--page-width, 144rem);
   margin: 0 auto;
-  padding: 0 3rem;
-  min-height: 88vh;
+  padding: 0 4rem;
+  min-height: 90vh;
 }
 
 .florice-hero--right .florice-hero__inner {
@@ -159,7 +164,7 @@
 .florice-hero--right .florice-hero__image {
   order: 2;
   margin-left: 0;
-  margin-right: -3rem;
+  margin-right: -4rem;
 }
 
 .florice-hero--right .florice-hero__text {
@@ -171,8 +176,8 @@
   position: relative;
   aspect-ratio: 4 / 5;
   overflow: hidden;
-  margin-left: -3rem;
-  background: rgb(var(--color-background) / 0.6);
+  margin-left: -4rem;
+  background: rgb(var(--color-foreground) / 0.06);
 }
 
 .florice-hero__image img,
@@ -227,9 +232,10 @@
   font-family: var(--font-heading-family);
   font-weight: 300;
   font-style: normal;
-  font-size: clamp(4rem, 6.4vw, 8.8rem);
-  line-height: 0.95;
-  letter-spacing: -0.03em;
+  font-variation-settings: "opsz" 144;
+  font-size: clamp(3.5rem, 8vw, 7rem);
+  line-height: 0.92;
+  letter-spacing: -0.035em;
   margin: 0 0 2.5rem;
   color: rgb(var(--color-foreground));
   word-break: keep-all;
@@ -365,7 +371,15 @@
     {
       "type": "image_picker",
       "id": "image",
-      "label": "Hero-Bild"
+      "label": "Hero-Bild",
+      "info": "Wenn leer, wird ein Demo-Foto (Unsplash) angezeigt. Lade hier dein eigenes Florice-Foto hoch, sobald verfügbar."
+    },
+    {
+      "type": "text",
+      "id": "fallback_image_url",
+      "label": "Fallback-Bild-URL",
+      "info": "Wird nur genutzt, wenn kein Hero-Bild hochgeladen ist. Standard: Sonnenblumen-Bouquet von Unsplash.",
+      "default": "https://images.unsplash.com/photo-1597848212624-a19eb35e2651?auto=format&fit=crop&w=1600&q=80"
     },
     {
       "type": "text",
