@@ -4,11 +4,13 @@
   aria-label="Issue"
 >
   <div class="florice-issuebar__inner">
+    <span class="florice-issuebar__bloom" aria-hidden="true">{% render 'florice-bloom', type: 'small' %}</span>
     <span class="florice-issuebar__mark">{{ section.settings.mark | escape }}</span>
-    <span class="florice-issuebar__sep" aria-hidden="true">·</span>
+    <span class="florice-issuebar__sep" aria-hidden="true">{% render 'florice-bloom', type: 'small' %}</span>
     <span class="florice-issuebar__title">{{ section.settings.title | escape }}</span>
-    <span class="florice-issuebar__sep" aria-hidden="true">·</span>
+    <span class="florice-issuebar__sep" aria-hidden="true">{% render 'florice-bloom', type: 'small' %}</span>
     <span class="florice-issuebar__meta">{{ section.settings.meta | escape }}</span>
+    <span class="florice-issuebar__bloom" aria-hidden="true">{% render 'florice-bloom', type: 'small' %}</span>
   </div>
 </div>
 
@@ -40,8 +42,26 @@
   opacity: 0.95;
 }
 
-.florice-issuebar__sep {
-  opacity: 0.4;
+.florice-issuebar__sep,
+.florice-issuebar__bloom {
+  display: inline-flex;
+  align-items: center;
+  opacity: 0.55;
+}
+
+.florice-issuebar__sep .florice-bloom,
+.florice-issuebar__bloom .florice-bloom {
+  width: 1.1rem !important;
+  height: 1.1rem !important;
+}
+
+.florice-issuebar__bloom {
+  opacity: 0.7;
+}
+
+.florice-issuebar__bloom .florice-bloom {
+  width: 1.3rem !important;
+  height: 1.3rem !important;
 }
 
 .florice-issuebar__title {
@@ -59,11 +79,16 @@
     letter-spacing: 0.18em;
     gap: 0.8rem;
   }
-  .florice-issuebar__sep {
+  .florice-issuebar__sep,
+  .florice-issuebar__bloom + .florice-issuebar__bloom {
     display: none;
   }
   .florice-issuebar__meta {
     display: none;
+  }
+  .florice-issuebar__bloom .florice-bloom {
+    width: 1.1rem !important;
+    height: 1.1rem !important;
   }
 }
 {% endstylesheet %}

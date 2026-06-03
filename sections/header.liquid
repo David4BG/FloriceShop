@@ -75,6 +75,30 @@
     }
   }
 
+  .florice-wordmark-wrap {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    line-height: 1;
+  }
+
+  .florice-wordmark-mark {
+    display: inline-flex;
+    align-items: center;
+    color: rgb(var(--color-foreground));
+    opacity: 0.85;
+    transition: transform 0.4s cubic-bezier(0.16, 0.84, 0.44, 1);
+  }
+
+  .florice-wordmark-mark .florice-bloom {
+    width: 2.6rem !important;
+    height: 3.4rem !important;
+  }
+
+  .header__heading-link:hover .florice-wordmark-mark {
+    transform: rotate(-8deg);
+  }
+
   .florice-wordmark {
     font-family: var(--font-heading-family), 'Fraunces', Georgia, serif;
     font-style: italic;
@@ -96,11 +120,22 @@
     .florice-wordmark {
       font-size: 3.4rem;
     }
+    .florice-wordmark-mark .florice-bloom {
+      width: 3rem !important;
+      height: 3.8rem !important;
+    }
   }
 
   @media screen and (max-width: 749px) {
     .florice-wordmark {
       font-size: 2.6rem;
+    }
+    .florice-wordmark-mark .florice-bloom {
+      width: 2.2rem !important;
+      height: 2.8rem !important;
+    }
+    .florice-wordmark-wrap {
+      gap: 0.6rem;
     }
   }
 </style>
@@ -201,7 +236,10 @@
             }}
           </div>
         {%- else -%}
-          <span class="h2 florice-wordmark">Florice</span>
+          <span class="florice-wordmark-wrap">
+            <span class="florice-wordmark-mark" aria-hidden="true">{% render 'florice-bloom', type: 'peony' %}</span>
+            <span class="h2 florice-wordmark">Florice</span>
+          </span>
         {%- endif -%}
       </a>
       {%- if request.page_type == 'index' -%}
@@ -244,7 +282,10 @@
             }}
           </div>
         {%- else -%}
-          <span class="h2 florice-wordmark">Florice</span>
+          <span class="florice-wordmark-wrap">
+            <span class="florice-wordmark-mark" aria-hidden="true">{% render 'florice-bloom', type: 'peony' %}</span>
+            <span class="h2 florice-wordmark">Florice</span>
+          </span>
         {%- endif -%}
       </a>
       {%- if request.page_type == 'index' -%}
