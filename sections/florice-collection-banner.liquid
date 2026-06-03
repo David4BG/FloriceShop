@@ -5,86 +5,263 @@
     padding-bottom: {{ section.settings.padding_bottom }}px;
   "
 >
+  <div class="florice-cbanner__scatter" aria-hidden="true">
+    <span class="florice-cbanner__sb florice-cbanner__sb--tl">{% render 'florice-bloom', type: 'peony' %}</span>
+    <span class="florice-cbanner__sb florice-cbanner__sb--tr">{% render 'florice-bloom', type: 'rose-stem' %}</span>
+    <span class="florice-cbanner__sb florice-cbanner__sb--bl">{% render 'florice-bloom', type: 'tulip' %}</span>
+    <span class="florice-cbanner__sb florice-cbanner__sb--br">{% render 'florice-bloom', type: 'wildflower' %}</span>
+  </div>
+
   <div class="florice-cbanner__inner page-width">
-    <div class="florice-cbanner__meta">
-      <span class="florice-cbanner__kicker">{{ section.settings.kicker | escape }}</span>
-      <span class="florice-cbanner__count">
-        {{ collection.products_count }}
-        {%- if collection.products_count == 1 -%} Stück {%- else -%} Stücke {%- endif -%}
-      </span>
+    <div class="florice-cbanner__head">
+      <p class="florice-cbanner__kicker">
+        {% render 'florice-bloom', type: 'small' %}
+        <span>{{ section.settings.kicker | escape }}</span>
+        {% render 'florice-bloom', type: 'small' %}
+      </p>
+
+      <h1 class="florice-cbanner__title">
+        {{ collection.title | escape }}
+      </h1>
+
+      <div class="florice-cbanner__meta">
+        <span class="florice-cbanner__count">
+          {{ collection.products_count }}
+          {%- if collection.products_count == 1 -%} Bl&uuml;te {%- else -%} Bl&uuml;ten {%- endif -%}
+        </span>
+        {%- if section.settings.show_season != blank -%}
+          <span class="florice-cbanner__sep" aria-hidden="true">{% render 'florice-bloom', type: 'small' %}</span>
+          <span class="florice-cbanner__season">{{ section.settings.show_season | escape }}</span>
+        {%- endif -%}
+      </div>
     </div>
 
-    <h1 class="florice-cbanner__title">
-      {{ collection.title | escape }}
-    </h1>
-
     {%- if section.settings.show_description and collection.description != blank -%}
-      <div class="florice-cbanner__desc rte">{{ collection.description }}</div>
+      <div class="florice-cbanner__desc rte">
+        {{ collection.description }}
+      </div>
+    {%- elsif section.settings.fallback_description != blank -%}
+      <div class="florice-cbanner__desc rte">
+        {{ section.settings.fallback_description }}
+      </div>
     {%- endif -%}
 
-    <div class="florice-cbanner__rule" aria-hidden="true"></div>
+    {%- if section.settings.show_image and collection.image != blank -%}
+      <figure class="florice-cbanner__image">
+        {{
+          collection.image
+          | image_url: width: 1600
+          | image_tag:
+            loading: 'eager',
+            fetchpriority: 'high',
+            sizes: '(min-width: 990px) 50vw, 90vw',
+            widths: '550, 750, 1100, 1600',
+            alt: collection.title
+        }}
+        <figcaption class="florice-cbanner__caption">
+          <span>{{ collection.title | escape }}</span>
+        </figcaption>
+      </figure>
+    {%- endif -%}
+
+    <div class="florice-cbanner__garland" aria-hidden="true">
+      {% render 'florice-bloom', type: 'garland' %}
+    </div>
   </div>
 </div>
 
 {% stylesheet %}
 .florice-cbanner {
   position: relative;
+  overflow: hidden;
+}
+
+.florice-cbanner__scatter {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  color: rgb(var(--color-foreground));
+  z-index: 0;
+}
+
+.florice-cbanner__sb {
+  position: absolute;
+  opacity: 0.13;
+  display: block;
+  width: 5.6rem;
+}
+
+.florice-cbanner__sb--tl {
+  top: 8%;
+  left: 4%;
+  transform: rotate(-18deg);
+}
+
+.florice-cbanner__sb--tr {
+  top: 12%;
+  right: 5%;
+  transform: rotate(22deg);
+  width: 6rem;
+}
+
+.florice-cbanner__sb--bl {
+  bottom: 18%;
+  left: 6%;
+  transform: rotate(12deg);
+  width: 5.2rem;
+}
+
+.florice-cbanner__sb--br {
+  bottom: 14%;
+  right: 4%;
+  transform: rotate(-14deg);
 }
 
 .florice-cbanner__inner {
+  position: relative;
+  z-index: 1;
   max-width: var(--page-width, 144rem);
+  margin: 0 auto;
+  text-align: center;
+}
+
+.florice-cbanner__head {
+  max-width: 78rem;
   margin: 0 auto;
 }
 
-.florice-cbanner__meta {
-  display: flex;
-  justify-content: space-between;
+.florice-cbanner__kicker {
+  display: inline-flex;
   align-items: center;
-  margin-bottom: 2.5rem;
-  font-size: 1.05rem;
-  letter-spacing: 0.22em;
+  gap: 1.1rem;
+  font-size: 1.1rem;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
+  margin: 0 0 2rem;
+  opacity: 0.78;
   font-weight: 500;
-  opacity: 0.7;
+}
+
+.florice-cbanner__kicker .florice-bloom {
+  opacity: 0.6;
 }
 
 .florice-cbanner__title {
   font-family: var(--font-heading-family);
   font-weight: 300;
-  font-size: clamp(4rem, 7vw, 8.8rem);
+  font-variation-settings: "opsz" 144;
+  font-size: clamp(4rem, 8vw, 9.4rem);
   line-height: 0.98;
-  letter-spacing: -0.03em;
-  margin: 0 0 3rem;
+  letter-spacing: -0.035em;
+  margin: 0 0 2.2rem;
   color: rgb(var(--color-foreground));
   word-break: keep-all;
   overflow-wrap: normal;
   hyphens: none;
 }
 
-.florice-cbanner__desc {
-  font-size: 1.65rem;
-  line-height: 1.55;
-  opacity: 0.78;
-  max-width: 58rem;
-  margin: 0 0 4rem;
+.florice-cbanner__meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.2rem;
+  font-size: 1.05rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 500;
+  opacity: 0.7;
+  margin: 0 0 3rem;
 }
 
-.florice-cbanner__desc p { margin: 0 0 1rem; }
-.florice-cbanner__desc p:last-child { margin-bottom: 0; }
+.florice-cbanner__sep {
+  display: inline-flex;
+  opacity: 0.5;
+}
 
-.florice-cbanner__rule {
+.florice-cbanner__sep .florice-bloom {
+  width: 1rem !important;
+  height: 1rem !important;
+}
+
+.florice-cbanner__season {
+  font-family: var(--font-heading-family);
+  font-style: italic;
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 1.4rem;
+}
+
+.florice-cbanner__desc {
+  font-size: 1.7rem;
+  line-height: 1.6;
+  opacity: 0.85;
+  max-width: 58rem;
+  margin: 0 auto 3rem;
+  font-family: var(--font-heading-family);
+  font-style: italic;
+  font-weight: 300;
+}
+
+.florice-cbanner__desc p {
+  margin: 0 0 1rem;
+}
+
+.florice-cbanner__desc p:last-child {
+  margin-bottom: 0;
+}
+
+.florice-cbanner__image {
+  position: relative;
+  margin: 0 auto 3rem;
+  max-width: 72rem;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+}
+
+.florice-cbanner__image img {
   width: 100%;
-  height: 1px;
-  background: rgb(var(--color-foreground) / 0.2);
-  margin-top: 2rem;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.florice-cbanner__caption {
+  position: absolute;
+  bottom: 1.4rem;
+  left: 1.6rem;
+  font-family: var(--font-heading-family);
+  font-style: italic;
+  color: white;
+  font-size: 1.3rem;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
+  background: rgba(0,0,0,0.32);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  padding: 0.4rem 0.9rem;
+}
+
+.florice-cbanner__garland {
+  margin: 2rem auto 0;
+  opacity: 0.65;
+  color: rgb(var(--color-foreground));
+  max-width: 60rem;
 }
 
 @media screen and (max-width: 749px) {
   .florice-cbanner__title {
-    font-size: clamp(3.6rem, 11vw, 5.6rem);
+    font-size: clamp(3.4rem, 11vw, 5.6rem);
   }
+  .florice-cbanner__desc {
+    font-size: 1.5rem;
+  }
+  .florice-cbanner__sb {
+    width: 3.6rem !important;
+    opacity: 0.1;
+  }
+  .florice-cbanner__sb--tl, .florice-cbanner__sb--tr { top: 3%; }
+  .florice-cbanner__sb--bl, .florice-cbanner__sb--br { bottom: 6%; }
   .florice-cbanner__meta {
-    margin-bottom: 1.5rem;
+    flex-direction: column;
+    gap: 0.6rem;
   }
 }
 {% endstylesheet %}
@@ -96,16 +273,45 @@
   "class": "section section-florice-cbanner",
   "settings": [
     {
+      "type": "header",
+      "content": "Inhalt"
+    },
+    {
       "type": "text",
       "id": "kicker",
-      "label": "Kicker (kleiner Caps-Text)",
-      "default": "Kollektion · Florice"
+      "label": "Kicker",
+      "default": "Aus dem Florice Sortiment"
+    },
+    {
+      "type": "text",
+      "id": "show_season",
+      "label": "Saison-Notiz (optional, kursiv neben Anzahl)",
+      "default": "Spring Edition"
     },
     {
       "type": "checkbox",
       "id": "show_description",
-      "label": "Kollektionsbeschreibung zeigen",
+      "label": "Kollektionsbeschreibung anzeigen",
+      "info": "Falls die Collection im Shopify-Admin eine Description hat, wird sie hier angezeigt.",
       "default": true
+    },
+    {
+      "type": "richtext",
+      "id": "fallback_description",
+      "label": "Fallback-Beschreibung",
+      "info": "Wird angezeigt, wenn die Collection keine Description hat.",
+      "default": "<p>Eine Auswahl unserer handgewickelten Florice-Blüten — Stiel für Stiel im Atelier gefertigt.</p>"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_image",
+      "label": "Kollektions-Bild zeigen",
+      "info": "Wenn die Collection ein Bild hat, wird es unter Titel + Beschreibung großformatig dargestellt.",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Layout"
     },
     {
       "type": "color_scheme",
@@ -121,7 +327,7 @@
       "step": 4,
       "unit": "px",
       "label": "Padding oben",
-      "default": 80
+      "default": 64
     },
     {
       "type": "range",
