@@ -58,6 +58,8 @@
         "eyebrow": "Sortiment nach Anlass",
         "title": "Sträuße, die <em>bleiben.</em>",
         "intro": "<p>Vier Sammlungen aus der Werkstatt — jede für einen besonderen Moment komponiert.</p>",
+        "fallback_collection": "all",
+        "show_product_titles": false,
         "color_scheme": "scheme-7",
         "padding_top": 60,
         "padding_bottom": 60

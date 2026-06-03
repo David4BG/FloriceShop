@@ -29,6 +29,15 @@
     </div>
   </div>
 
+  {%- liquid
+    assign fallback_coll_handle = section.settings.fallback_collection
+    if fallback_coll_handle != blank
+      assign fallback_coll = collections[fallback_coll_handle]
+    else
+      assign fallback_coll = nil
+    endif
+  -%}
+
   <div class="florice-anlaesse__grid page-width">
     {%- for block in section.blocks -%}
       {%- liquid
@@ -52,6 +61,34 @@
           assign tile_icon = 'sprig'
         endif
 
+        # resolve the product source for this tile
+        assign tile_product = nil
+        if block.settings.product != blank
+          assign tile_product = all_products[block.settings.product]
+        elsif fallback_coll != nil and fallback_coll.products_count > 0
+          assign idx = forloop.index0 | modulo: fallback_coll.products_count
+          assign tile_product = fallback_coll.products[idx]
+        endif
+
+        # decide effective image, title, link
+        assign tile_link = block.settings.link
+        assign tile_title = block.settings.title
+        assign tile_product_image = nil
+        if block.settings.image == blank and tile_product != nil
+          assign tile_product_image = tile_product.featured_image
+          if tile_link == blank
+            assign tile_link = tile_product.url
+          endif
+          if section.settings.show_product_titles
+            assign tile_title = tile_product.title
+          endif
+        endif
+
+        if tile_link == blank
+          assign tile_link = '/collections/all'
+        endif
+
+        # absolute unsplash fallback (only if neither image nor product available)
         if title_lower contains 'hochzeit'
           assign tile_fallback = 'https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=800&q=80'
         elsif title_lower contains 'geschenk'
@@ -61,22 +98,12 @@
         elsif title_lower contains 'wohnen' or title_lower contains 'deko'
           assign tile_fallback = 'https://images.unsplash.com/photo-1455659817273-f96807779a8a?auto=format&fit=crop&w=800&q=80'
         else
-          assign fallback_idx = forloop.index0 | modulo: 4
-          case fallback_idx
-            when 0
-              assign tile_fallback = 'https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=800&q=80'
-            when 1
-              assign tile_fallback = 'https://images.unsplash.com/photo-1487530811176-3780de880c2d?auto=format&fit=crop&w=800&q=80'
-            when 2
-              assign tile_fallback = 'https://images.unsplash.com/photo-1518895949257-7621c3c786d7?auto=format&fit=crop&w=800&q=80'
-            when 3
-              assign tile_fallback = 'https://images.unsplash.com/photo-1455659817273-f96807779a8a?auto=format&fit=crop&w=800&q=80'
-          endcase
+          assign tile_fallback = 'https://images.unsplash.com/photo-1487530811176-3780de880c2d?auto=format&fit=crop&w=800&q=80'
         endif
       -%}
 
       <a
-        href="{{ block.settings.link | default: '#' }}"
+        href="{{ tile_link }}"
         class="florice-anlaesse__tile florice-anlaesse__tile--{{ tile_icon }}"
         {{ block.shopify_attributes }}
       >
@@ -89,10 +116,20 @@
                 loading: 'lazy',
                 sizes: '(min-width: 990px) 25vw, 50vw',
                 widths: '375, 550, 750, 900',
-                alt: block.settings.title
+                alt: tile_title
+            }}
+          {%- elsif tile_product_image != nil -%}
+            {{
+              tile_product_image
+              | image_url: width: 900
+              | image_tag:
+                loading: 'lazy',
+                sizes: '(min-width: 990px) 25vw, 50vw',
+                widths: '375, 550, 750, 900',
+                alt: tile_title
             }}
           {%- else -%}
-            <img src="{{ tile_fallback }}" alt="{{ block.settings.title | escape }} — Florice" loading="lazy">
+            <img src="{{ tile_fallback }}" alt="{{ tile_title | escape }} — Florice" loading="lazy">
           {%- endif -%}
           <span class="florice-anlaesse__number">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>
           <span class="florice-anlaesse__floral" aria-hidden="true" data-bloom="{{ tile_icon }}">
@@ -101,7 +138,7 @@
         </div>
         <div class="florice-anlaesse__caption">
           <span class="florice-anlaesse__kicker">{{ block.settings.kicker | escape }}</span>
-          <span class="florice-anlaesse__name">{{ block.settings.title | escape }}</span>
+          <span class="florice-anlaesse__name">{{ tile_title | escape }}</span>
           <span class="florice-anlaesse__arrow" aria-hidden="true">→</span>
         </div>
       </a>
@@ -425,6 +462,23 @@
     },
     {
       "type": "header",
+      "content": "Produkt-Auto-Fallback"
+    },
+    {
+      "type": "collection",
+      "id": "fallback_collection",
+      "label": "Fallback-Collection",
+      "info": "Wenn pro Kachel kein Bild und kein Produkt gepickt ist, werden Bilder, Titel und Links aus dieser Collection automatisch der Reihe nach gezogen."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_product_titles",
+      "label": "Produkt-Titel statt Anlass-Name zeigen",
+      "info": "Wenn aktiv und ein Produkt verlinkt ist, zeigt die Kachel den Produkt-Titel an. Sonst bleibt der manuell gesetzte Anlass-Name.",
+      "default": false
+    },
+    {
+      "type": "header",
       "content": "Layout"
     },
     {
@@ -463,7 +517,14 @@
         {
           "type": "image_picker",
           "id": "image",
-          "label": "Bild"
+          "label": "Bild (manuell)",
+          "info": "Wenn gesetzt, wird dieses Bild verwendet. Sonst greift das verknüpfte Produkt oder der Auto-Fallback."
+        },
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Produkt (optional)",
+          "info": "Wenn ausgewählt: Bild, Titel und Link werden vom Produkt übernommen, falls kein manuelles Bild gesetzt ist."
         },
         {
           "type": "text",
