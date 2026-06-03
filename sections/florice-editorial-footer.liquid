@@ -1,0 +1,484 @@
+<footer
+  class="florice-foot color-{{ section.settings.color_scheme }} gradient"
+  role="contentinfo"
+  style="
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  "
+>
+  <div class="florice-foot__inner page-width">
+    <div class="florice-foot__top">
+      <div class="florice-foot__brand">
+        <a href="{{ routes.root_url }}" class="florice-foot__logo">
+          {%- if section.settings.logo != blank -%}
+            {{
+              section.settings.logo
+              | image_url: width: 600
+              | image_tag:
+                widths: '300, 400, 600',
+                alt: shop.name,
+                class: 'florice-foot__logo-img'
+            }}
+          {%- else -%}
+            <span class="florice-foot__wordmark">{{ shop.name }}</span>
+          {%- endif -%}
+        </a>
+        {%- if section.settings.tagline != blank -%}
+          <p class="florice-foot__tagline">{{ section.settings.tagline }}</p>
+        {%- endif -%}
+      </div>
+
+      <div class="florice-foot__columns">
+        {%- for block in section.blocks -%}
+          {%- case block.type -%}
+
+            {%- when 'menu' -%}
+              <div class="florice-foot__col" {{ block.shopify_attributes }}>
+                {%- if block.settings.heading != blank -%}
+                  <h3 class="florice-foot__col-heading">{{ block.settings.heading | escape }}</h3>
+                {%- endif -%}
+                {%- if block.settings.menu != blank -%}
+                  <ul class="florice-foot__menu list-unstyled">
+                    {%- for link in linklists[block.settings.menu].links -%}
+                      <li><a href="{{ link.url }}">{{ link.title | escape }}</a></li>
+                    {%- endfor -%}
+                  </ul>
+                {%- endif -%}
+              </div>
+
+            {%- when 'text' -%}
+              <div class="florice-foot__col florice-foot__col--text" {{ block.shopify_attributes }}>
+                {%- if block.settings.heading != blank -%}
+                  <h3 class="florice-foot__col-heading">{{ block.settings.heading | escape }}</h3>
+                {%- endif -%}
+                {%- if block.settings.body != blank -%}
+                  <div class="florice-foot__col-body rte">{{ block.settings.body }}</div>
+                {%- endif -%}
+              </div>
+
+            {%- when 'contact' -%}
+              <div class="florice-foot__col" {{ block.shopify_attributes }}>
+                {%- if block.settings.heading != blank -%}
+                  <h3 class="florice-foot__col-heading">{{ block.settings.heading | escape }}</h3>
+                {%- endif -%}
+                <ul class="florice-foot__contact list-unstyled">
+                  {%- if block.settings.email != blank -%}
+                    <li>
+                      <span class="florice-foot__contact-label">Mail</span>
+                      <a href="mailto:{{ block.settings.email }}">{{ block.settings.email }}</a>
+                    </li>
+                  {%- endif -%}
+                  {%- if block.settings.phone != blank -%}
+                    <li>
+                      <span class="florice-foot__contact-label">Tel</span>
+                      <a href="tel:{{ block.settings.phone | replace: ' ', '' }}">{{ block.settings.phone }}</a>
+                    </li>
+                  {%- endif -%}
+                  {%- if block.settings.address != blank -%}
+                    <li>
+                      <span class="florice-foot__contact-label">Atelier</span>
+                      <span>{{ block.settings.address }}</span>
+                    </li>
+                  {%- endif -%}
+                </ul>
+              </div>
+
+          {%- endcase -%}
+        {%- endfor -%}
+      </div>
+    </div>
+
+    {%- if section.settings.big_wordmark != blank -%}
+      <div class="florice-foot__bigmark" aria-hidden="true">{{ section.settings.big_wordmark | escape }}</div>
+    {%- endif -%}
+
+    <div class="florice-foot__bottom">
+      <div class="florice-foot__legal">
+        <span>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}</span>
+        {%- if section.settings.legal_menu != blank -%}
+          <ul class="florice-foot__legal-menu list-unstyled">
+            {%- for link in linklists[section.settings.legal_menu].links -%}
+              <li><a href="{{ link.url }}">{{ link.title | escape }}</a></li>
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+      </div>
+
+      {%- if section.settings.show_payment -%}
+        <div class="florice-foot__payment">
+          <ul class="payment-icons list-unstyled">
+            {%- for type in shop.enabled_payment_types -%}
+              <li class="payment-icon">{{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}</li>
+            {%- endfor -%}
+          </ul>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</footer>
+
+{% stylesheet %}
+.florice-foot {
+  position: relative;
+  overflow: hidden;
+}
+
+.florice-foot__inner {
+  display: flex;
+  flex-direction: column;
+}
+
+.florice-foot__top {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 6rem;
+  align-items: start;
+  padding-bottom: 5rem;
+  border-bottom: 1px solid rgb(var(--color-foreground) / 0.16);
+}
+
+.florice-foot__brand {
+  max-width: 32rem;
+}
+
+.florice-foot__logo {
+  text-decoration: none;
+  color: inherit;
+  display: inline-block;
+  margin-bottom: 1.6rem;
+}
+
+.florice-foot__logo-img {
+  max-width: 180px;
+  height: auto;
+  display: block;
+}
+
+.florice-foot__wordmark {
+  font-family: var(--font-heading-family);
+  font-style: italic;
+  font-weight: 300;
+  font-size: 3.6rem;
+  letter-spacing: -0.02em;
+}
+
+.florice-foot__tagline {
+  font-family: var(--font-heading-family);
+  font-style: italic;
+  font-weight: 300;
+  font-size: 1.7rem;
+  line-height: 1.4;
+  opacity: 0.75;
+  margin: 0;
+}
+
+.florice-foot__columns {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+}
+
+.florice-foot__col-heading {
+  font-family: inherit;
+  font-size: 1.1rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin: 0 0 1.8rem;
+  opacity: 0.85;
+}
+
+.florice-foot__menu li,
+.florice-foot__contact li {
+  margin: 0 0 0.9rem;
+  font-size: 1.45rem;
+  line-height: 1.4;
+}
+
+.florice-foot__menu a,
+.florice-foot__contact a {
+  color: inherit;
+  text-decoration: none;
+  opacity: 0.85;
+  transition: opacity 0.2s ease;
+  position: relative;
+}
+
+.florice-foot__menu a:hover,
+.florice-foot__contact a:hover {
+  opacity: 1;
+}
+
+.florice-foot__contact li {
+  display: grid;
+  grid-template-columns: 6rem 1fr;
+  gap: 1rem;
+  align-items: baseline;
+}
+
+.florice-foot__contact-label {
+  font-size: 1rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.5;
+  font-weight: 500;
+}
+
+.florice-foot__col--text .florice-foot__col-body {
+  font-size: 1.4rem;
+  line-height: 1.6;
+  opacity: 0.82;
+}
+
+.florice-foot__col--text .florice-foot__col-body p {
+  margin: 0 0 0.8rem;
+}
+
+.florice-foot__bigmark {
+  font-family: var(--font-heading-family);
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(8rem, 18vw, 22rem);
+  line-height: 0.85;
+  letter-spacing: -0.04em;
+  color: rgb(var(--color-foreground));
+  opacity: 0.08;
+  margin: 4rem 0 2rem;
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-align: center;
+}
+
+.florice-foot__bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  padding-top: 3rem;
+  border-top: 1px solid rgb(var(--color-foreground) / 0.16);
+  font-size: 1.1rem;
+  letter-spacing: 0.06em;
+}
+
+.florice-foot__legal {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  opacity: 0.7;
+}
+
+.florice-foot__legal-menu {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin: 0;
+}
+
+.florice-foot__legal-menu a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.florice-foot__legal-menu a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.florice-foot__payment {
+  opacity: 0.85;
+}
+
+.florice-foot__payment .payment-icons {
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  margin: 0;
+}
+
+.florice-foot__payment .payment-icon {
+  width: 38px;
+  height: 24px;
+}
+
+.florice-foot__payment .payment-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+@media screen and (max-width: 989px) {
+  .florice-foot__top {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  .florice-foot__columns {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem;
+  }
+  .florice-foot__bigmark {
+    margin: 2.5rem 0 1rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .florice-foot__columns {
+    grid-template-columns: 1fr;
+  }
+}
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Florice Editorial Footer",
+  "tag": "section",
+  "class": "section section-florice-foot",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Marke"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo (optional, sonst Shopname)"
+    },
+    {
+      "type": "textarea",
+      "id": "tagline",
+      "label": "Tagline",
+      "default": "Blumen für die Ewigkeit — handgewickelt im Florice Atelier."
+    },
+    {
+      "type": "text",
+      "id": "big_wordmark",
+      "label": "Großer Wordmark (dekorativ)",
+      "default": "florice"
+    },
+    {
+      "type": "header",
+      "content": "Bottom"
+    },
+    {
+      "type": "link_list",
+      "id": "legal_menu",
+      "label": "Legal-Menü",
+      "info": "Impressum, Datenschutz, AGB"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_payment",
+      "label": "Zahlungsicons zeigen",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Farb-Schema",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding oben",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding unten",
+      "default": 48
+    }
+  ],
+  "blocks": [
+    {
+      "type": "menu",
+      "name": "Menü-Spalte",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Überschrift",
+          "default": "Shop"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "Menü"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "Text-Spalte",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Überschrift",
+          "default": "Atelier"
+        },
+        {
+          "type": "richtext",
+          "id": "body",
+          "label": "Text"
+        }
+      ]
+    },
+    {
+      "type": "contact",
+      "name": "Kontakt-Spalte",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Überschrift",
+          "default": "Kontakt"
+        },
+        {
+          "type": "text",
+          "id": "email",
+          "label": "E-Mail"
+        },
+        {
+          "type": "text",
+          "id": "phone",
+          "label": "Telefon"
+        },
+        {
+          "type": "textarea",
+          "id": "address",
+          "label": "Adresse"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    {
+      "name": "Florice Editorial Footer",
+      "category": "Florice",
+      "blocks": [
+        { "type": "menu", "settings": { "heading": "Shop" } },
+        { "type": "menu", "settings": { "heading": "Atelier" } },
+        { "type": "contact", "settings": { "heading": "Kontakt" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,1 +1,58 @@
-{"name":"t:sections.footer.name","type":"footer","sections":{"footer":{"type":"footer","settings":{"color_scheme":"scheme-1","newsletter_enable":false,"newsletter_heading":"Subscribe to our emails","enable_follow_on_shop":false,"show_social":true,"enable_country_selector":true,"enable_language_selector":true,"payment_enable":true,"show_policy":true,"margin_top":0,"padding_top":0,"padding_bottom":36}}},"order":["footer"]}
+{
+  "name": "t:sections.footer.name",
+  "type": "footer",
+  "sections": {
+    "newsletter_foot": {
+      "type": "florice-newsletter",
+      "settings": {
+        "eyebrow": "Brief aus dem Atelier",
+        "title": "Was als nächstes <em>blüht.</em>",
+        "subtext": "<p>Sechs Briefe im Jahr. Neue Kollektionen zuerst, ein Blick in den Wickeltisch und der gelegentliche Rabatt.</p>",
+        "placeholder": "Deine E-Mail-Adresse",
+        "button_label": "Abonnieren",
+        "fine_print": "Abmeldung jederzeit mit einem Klick. Datenschutz selbstverständlich.",
+        "color_scheme": "scheme-3",
+        "padding_top": 120,
+        "padding_bottom": 120
+      }
+    },
+    "editorial_footer": {
+      "type": "florice-editorial-footer",
+      "blocks": {
+        "menu_shop": {
+          "type": "menu",
+          "settings": {
+            "heading": "Shop",
+            "menu": "footer"
+          }
+        },
+        "menu_atelier": {
+          "type": "menu",
+          "settings": {
+            "heading": "Atelier",
+            "menu": "main-menu"
+          }
+        },
+        "contact": {
+          "type": "contact",
+          "settings": {
+            "heading": "Kontakt",
+            "email": "hallo@florice.de",
+            "phone": "",
+            "address": "Florice Atelier\nDeutschland"
+          }
+        }
+      },
+      "block_order": ["menu_shop", "menu_atelier", "contact"],
+      "settings": {
+        "tagline": "Blumen für die Ewigkeit — handgewickelt im Florice Atelier.",
+        "big_wordmark": "florice",
+        "show_payment": true,
+        "color_scheme": "scheme-1",
+        "padding_top": 100,
+        "padding_bottom": 48
+      }
+    }
+  },
+  "order": ["newsletter_foot", "editorial_footer"]
+}

@@ -1,0 +1,144 @@
+<div
+  class="florice-cbanner color-{{ section.settings.color_scheme }} gradient"
+  style="
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  "
+>
+  <div class="florice-cbanner__inner page-width">
+    <div class="florice-cbanner__meta">
+      <span class="florice-cbanner__kicker">{{ section.settings.kicker | escape }}</span>
+      <span class="florice-cbanner__count">
+        {{ collection.products_count }}
+        {%- if collection.products_count == 1 -%} Stück {%- else -%} Stücke {%- endif -%}
+      </span>
+    </div>
+
+    <h1 class="florice-cbanner__title">
+      {{ collection.title | escape }}
+    </h1>
+
+    {%- if section.settings.show_description and collection.description != blank -%}
+      <div class="florice-cbanner__desc rte">{{ collection.description }}</div>
+    {%- endif -%}
+
+    <div class="florice-cbanner__rule" aria-hidden="true"></div>
+  </div>
+</div>
+
+{% stylesheet %}
+.florice-cbanner {
+  position: relative;
+}
+
+.florice-cbanner__inner {
+  max-width: var(--page-width, 144rem);
+  margin: 0 auto;
+}
+
+.florice-cbanner__meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2.5rem;
+  font-size: 1.05rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 500;
+  opacity: 0.7;
+}
+
+.florice-cbanner__title {
+  font-family: var(--font-heading-family);
+  font-weight: 300;
+  font-size: clamp(4.8rem, 9vw, 11rem);
+  line-height: 0.95;
+  letter-spacing: -0.035em;
+  margin: 0 0 3rem;
+  color: rgb(var(--color-foreground));
+}
+
+.florice-cbanner__desc {
+  font-size: 1.65rem;
+  line-height: 1.55;
+  opacity: 0.78;
+  max-width: 58rem;
+  margin: 0 0 4rem;
+}
+
+.florice-cbanner__desc p { margin: 0 0 1rem; }
+.florice-cbanner__desc p:last-child { margin-bottom: 0; }
+
+.florice-cbanner__rule {
+  width: 100%;
+  height: 1px;
+  background: rgb(var(--color-foreground) / 0.2);
+  margin-top: 2rem;
+}
+
+@media screen and (max-width: 749px) {
+  .florice-cbanner__title {
+    font-size: clamp(3.6rem, 11vw, 5.6rem);
+  }
+  .florice-cbanner__meta {
+    margin-bottom: 1.5rem;
+  }
+}
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Florice Collection Banner",
+  "tag": "section",
+  "class": "section section-florice-cbanner",
+  "settings": [
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Kicker (kleiner Caps-Text)",
+      "default": "Kollektion · Florice"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_description",
+      "label": "Kollektionsbeschreibung zeigen",
+      "default": true
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Farb-Schema",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding oben",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding unten",
+      "default": 32
+    }
+  ],
+  "enabled_on": {
+    "templates": ["collection"]
+  },
+  "presets": [
+    {
+      "name": "Florice Collection Banner",
+      "category": "Florice"
+    }
+  ]
+}
+{% endschema %}

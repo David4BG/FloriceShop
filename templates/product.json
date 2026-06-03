@@ -1,1 +1,156 @@
-{"sections":{"main":{"type":"main-product","blocks":{"title":{"type":"title","settings":{}},"price":{"type":"price","settings":{}},"variant_picker":{"type":"variant_picker","settings":{"picker_type":"button","swatch_shape":"circle"}},"quantity_selector":{"type":"quantity_selector","settings":{}},"buy_buttons":{"type":"buy_buttons","settings":{"show_dynamic_checkout":true,"show_gift_card_recipient":true}},"text_4JGNEh":{"type":"text","settings":{"text":"<em>In 3-5 Werktagen bei dir<\/em>","text_style":"body"}},"description":{"type":"description","settings":{}},"collapsible_tab_yGjQDq":{"type":"collapsible_tab","settings":{"heading":"Herstellerinformationen (GPSR)","icon":"clipboard","content":"<p>{{ product.metafields.custom.herstellerinformationen | metafield_tag }}<\/p>","page":""}},"collapsible_tab_tcjUBd":{"type":"collapsible_tab","settings":{"heading":"Produktinformationen","icon":"box","content":"<p>Handgefertigte Dekoblume aus Pfeifenreiniger (Chenilledraht).<br\/><br\/><strong>Produktdetails:<\/strong><\/p><ul><li>Material: Pfeifenreiniger (Drahtkern mit Textilummantelung)<\/li><li>Höhe: {{ product.metafields.custom.grose.value }}<\/li><\/ul>","page":""}},"collapsible_tab_BakHpL":{"type":"collapsible_tab","settings":{"heading":"Sicherheitshinweise","icon":"check_mark","content":"<p>Dieses Produkt ist ein Dekorationsartikel und kein Spielzeug. Enthält Drahtbestandteile, die bei unsachgemäßer Handhabung zu Verletzungen führen können. Nicht geeignet für Kinder unter 3 Jahren. Außer Reichweite von Kleinkindern aufbewahren.<\/p>","page":""}},"collapsible_tab_h9VhP8":{"type":"collapsible_tab","settings":{"heading":"Versandinformationen","icon":"truck","content":"<p><strong>Versandkosten: <\/strong><\/p><ul><li>4,99 € innerhalb Deutschland.<\/li><li>Kostenlose Lieferung ab 50 € Bestellwert. <\/li><\/ul><p><strong>Lieferzeit:<\/strong> 3 - 5 Werktage nach Zahlungseingang<\/p><p><br\/>Wir liefern ausschließlich innerhalb Deutschlands.<\/p>","page":""}},"share":{"type":"share","settings":{"share_label":"Share"}}},"block_order":["title","price","variant_picker","quantity_selector","buy_buttons","text_4JGNEh","description","collapsible_tab_yGjQDq","collapsible_tab_tcjUBd","collapsible_tab_BakHpL","collapsible_tab_h9VhP8","share"],"settings":{"enable_sticky_info":true,"color_scheme":"scheme-1","media_size":"medium","constrain_to_viewport":true,"media_fit":"contain","gallery_layout":"thumbnail","mobile_thumbnails":"hide","media_position":"left","image_zoom":"hover","hide_variants":false,"enable_video_looping":false,"padding_top":36,"padding_bottom":44}},"related-products":{"type":"related-products","settings":{"heading":"Weitere Geschenkideen","heading_size":"h2","products_to_show":4,"columns_desktop":4,"columns_mobile":"2","color_scheme":"scheme-1","image_ratio":"square","image_shape":"default","show_secondary_image":false,"show_vendor":false,"show_rating":false,"padding_top":36,"padding_bottom":68}},"custom_liquid_gi4AGd":{"type":"custom-liquid","name":"t:sections.custom-liquid.presets.name","settings":{"custom_liquid":"<div style=\"margin: 10px 0;\">\n  <button\n    class=\"btn btn--secondary isense-reopen-widget-button\"\n    onclick=\"showPreferences(this); event.preventDefault();\"\n    aria-haspopup=\"dialog\"\n    style=\"\n      background: transparent;\n      border: 1px solid currentColor;\n      color: inherit;\n      width: 36px;\n      height: 36px;\n      border-radius: 50%;\n      font-size: 16px;\n      cursor: pointer;\n      opacity: 0.7;\n      transition: opacity 0.2s ease;\n      display: flex;\n      align-items: center;\n      justify-content: center;\n      padding: 0;\n    \"\n    onmouseover=\"this.style.opacity='1'\"\n    onmouseout=\"this.style.opacity='0.7'\"\n    title=\"Cookie Einstellungen\"\n  >\n    🍪\n  <\/button>\n<\/div>","color_scheme":"","padding_top":40,"padding_bottom":52}}},"order":["main","related-products","custom_liquid_gi4AGd"]}
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "title": { "type": "title", "settings": {} },
+        "price": { "type": "price", "settings": {} },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": { "picker_type": "button", "swatch_shape": "circle" }
+        },
+        "quantity_selector": { "type": "quantity_selector", "settings": {} },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": { "show_dynamic_checkout": true, "show_gift_card_recipient": true }
+        },
+        "text_4JGNEh": {
+          "type": "text",
+          "settings": { "text": "<em>In 3-5 Werktagen bei dir</em>", "text_style": "body" }
+        },
+        "description": { "type": "description", "settings": {} },
+        "collapsible_tab_yGjQDq": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Herstellerinformationen (GPSR)",
+            "icon": "clipboard",
+            "content": "<p>{{ product.metafields.custom.herstellerinformationen | metafield_tag }}</p>",
+            "page": ""
+          }
+        },
+        "collapsible_tab_tcjUBd": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Produktinformationen",
+            "icon": "box",
+            "content": "<p>Handgefertigte Dekoblume aus Pfeifenreiniger (Chenilledraht).<br/><br/><strong>Produktdetails:</strong></p><ul><li>Material: Pfeifenreiniger (Drahtkern mit Textilummantelung)</li><li>Höhe: {{ product.metafields.custom.grose.value }}</li></ul>",
+            "page": ""
+          }
+        },
+        "collapsible_tab_BakHpL": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Sicherheitshinweise",
+            "icon": "check_mark",
+            "content": "<p>Dieses Produkt ist ein Dekorationsartikel und kein Spielzeug. Enthält Drahtbestandteile, die bei unsachgemäßer Handhabung zu Verletzungen führen können. Nicht geeignet für Kinder unter 3 Jahren. Außer Reichweite von Kleinkindern aufbewahren.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_tab_h9VhP8": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Versandinformationen",
+            "icon": "truck",
+            "content": "<p><strong>Versandkosten: </strong></p><ul><li>4,99 € innerhalb Deutschland.</li><li>Kostenlose Lieferung ab 50 € Bestellwert. </li></ul><p><strong>Lieferzeit:</strong> 3 - 5 Werktage nach Zahlungseingang</p><p><br/>Wir liefern ausschließlich innerhalb Deutschlands.</p>",
+            "page": ""
+          }
+        },
+        "share": { "type": "share", "settings": { "share_label": "Share" } }
+      },
+      "block_order": [
+        "title",
+        "price",
+        "variant_picker",
+        "quantity_selector",
+        "buy_buttons",
+        "text_4JGNEh",
+        "description",
+        "collapsible_tab_yGjQDq",
+        "collapsible_tab_tcjUBd",
+        "collapsible_tab_BakHpL",
+        "collapsible_tab_h9VhP8",
+        "share"
+      ],
+      "settings": {
+        "enable_sticky_info": true,
+        "color_scheme": "scheme-1",
+        "media_size": "medium",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "gallery_layout": "thumbnail",
+        "mobile_thumbnails": "hide",
+        "media_position": "left",
+        "image_zoom": "hover",
+        "hide_variants": false,
+        "enable_video_looping": false,
+        "padding_top": 56,
+        "padding_bottom": 80
+      }
+    },
+    "pullquote_bridge": {
+      "type": "florice-pullquote",
+      "settings": {
+        "quote": "<p>Jede Blüte ein Unikat. Keine gleicht der nächsten — <em>so soll es sein.</em></p>",
+        "attribution": "Florice Atelier",
+        "attribution_meta": "Manufaktur · Deutschland",
+        "color_scheme": "scheme-2",
+        "padding_top": 100,
+        "padding_bottom": 100
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {
+        "heading": "Weitere Geschenkideen",
+        "heading_size": "h2",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "color_scheme": "scheme-1",
+        "image_ratio": "portrait",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "padding_top": 60,
+        "padding_bottom": 100
+      }
+    },
+    "atelier_story": {
+      "type": "florice-atelier-strip",
+      "blocks": {
+        "image_1": { "type": "image", "settings": {} },
+        "image_2": { "type": "image", "settings": {} },
+        "image_3": { "type": "image", "settings": {} }
+      },
+      "block_order": ["image_1", "image_2", "image_3"],
+      "settings": {
+        "eyebrow": "Aus dem Atelier",
+        "title": "So entsteht eine <em>Florice.</em>",
+        "body": "<p>Stiel für Stiel, am Tisch gewickelt. Keine Maschine, keine Schablone — vier Stunden für eine einzige Blüte. Deswegen gleicht keine Florice exakt der nächsten.</p>",
+        "link_label": "Mehr über das Atelier",
+        "link_url": "",
+        "color_scheme": "scheme-3",
+        "padding_top": 100,
+        "padding_bottom": 100
+      }
+    },
+    "custom_liquid_gi4AGd": {
+      "type": "custom-liquid",
+      "name": "t:sections.custom-liquid.presets.name",
+      "settings": {
+        "custom_liquid": "<div style=\"margin: 10px 0;\">\n  <button\n    class=\"btn btn--secondary isense-reopen-widget-button\"\n    onclick=\"showPreferences(this); event.preventDefault();\"\n    aria-haspopup=\"dialog\"\n    style=\"\n      background: transparent;\n      border: 1px solid currentColor;\n      color: inherit;\n      width: 36px;\n      height: 36px;\n      border-radius: 50%;\n      font-size: 16px;\n      cursor: pointer;\n      opacity: 0.7;\n      transition: opacity 0.2s ease;\n      display: flex;\n      align-items: center;\n      justify-content: center;\n      padding: 0;\n    \"\n    onmouseover=\"this.style.opacity='1'\"\n    onmouseout=\"this.style.opacity='0.7'\"\n    title=\"Cookie Einstellungen\"\n  >\n    🍪\n  </button>\n</div>",
+        "color_scheme": "",
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    }
+  },
+  "order": [
+    "main",
+    "pullquote_bridge",
+    "related-products",
+    "atelier_story",
+    "custom_liquid_gi4AGd"
+  ]
+}

@@ -1,0 +1,175 @@
+<div
+  class="florice-pullquote color-{{ section.settings.color_scheme }} gradient"
+  style="
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  "
+>
+  <figure class="florice-pullquote__inner page-width">
+    <span class="florice-pullquote__mark" aria-hidden="true">&ldquo;</span>
+    <blockquote class="florice-pullquote__text">
+      {{ section.settings.quote }}
+    </blockquote>
+    {%- if section.settings.attribution != blank or section.settings.attribution_meta != blank -%}
+      <figcaption class="florice-pullquote__attr">
+        {%- if section.settings.attribution != blank -%}
+          <span class="florice-pullquote__attr-name">{{ section.settings.attribution | escape }}</span>
+        {%- endif -%}
+        {%- if section.settings.attribution_meta != blank -%}
+          <span class="florice-pullquote__attr-meta">{{ section.settings.attribution_meta | escape }}</span>
+        {%- endif -%}
+      </figcaption>
+    {%- endif -%}
+  </figure>
+</div>
+
+{% stylesheet %}
+.florice-pullquote {
+  position: relative;
+  overflow: hidden;
+}
+
+.florice-pullquote__inner {
+  max-width: 92rem;
+  margin: 0 auto;
+  padding: 0 4rem;
+  text-align: center;
+  position: relative;
+}
+
+.florice-pullquote__mark {
+  display: block;
+  font-family: var(--font-heading-family);
+  font-style: italic;
+  font-size: clamp(8rem, 12vw, 16rem);
+  line-height: 0.7;
+  margin: 0 0 -1rem;
+  opacity: 0.18;
+  color: rgb(var(--color-foreground));
+}
+
+.florice-pullquote__text {
+  font-family: var(--font-heading-family);
+  font-weight: 300;
+  font-style: italic;
+  font-size: clamp(2.6rem, 4vw, 4.4rem);
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  margin: 0 0 3.5rem;
+  color: rgb(var(--color-foreground));
+}
+
+.florice-pullquote__attr {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  align-items: center;
+  position: relative;
+  padding-top: 2rem;
+}
+
+.florice-pullquote__attr::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4rem;
+  height: 1px;
+  background: rgb(var(--color-foreground) / 0.4);
+}
+
+.florice-pullquote__attr-name {
+  font-size: 1.2rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.florice-pullquote__attr-meta {
+  font-size: 1.1rem;
+  letter-spacing: 0.05em;
+  opacity: 0.6;
+  font-style: italic;
+}
+
+@media screen and (max-width: 749px) {
+  .florice-pullquote__inner {
+    padding: 0 2rem;
+  }
+  .florice-pullquote__text {
+    font-size: clamp(2rem, 6vw, 2.8rem);
+  }
+}
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Florice Pull Quote",
+  "tag": "section",
+  "class": "section section-florice-pullquote",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Inhalt"
+    },
+    {
+      "type": "richtext",
+      "id": "quote",
+      "label": "Zitat",
+      "default": "<p>Eine Florice ist kein Strauß. Sie ist eine Erinnerung, die nicht welkt.</p>"
+    },
+    {
+      "type": "text",
+      "id": "attribution",
+      "label": "Urheber",
+      "default": "Florice Atelier"
+    },
+    {
+      "type": "text",
+      "id": "attribution_meta",
+      "label": "Zusatz (z. B. Rolle, Ort)",
+      "default": "Manufaktur · Deutschland"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Farb-Schema",
+      "default": "scheme-2"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 240,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding oben",
+      "default": 140
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 240,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding unten",
+      "default": 140
+    }
+  ],
+  "presets": [
+    {
+      "name": "Florice Pull Quote",
+      "category": "Florice"
+    }
+  ]
+}
+{% endschema %}

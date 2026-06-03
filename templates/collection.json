@@ -1,1 +1,61 @@
-{"sections":{"main-collection-banner":{"type":"main-collection-banner","settings":{"show_collection_description":true,"show_collection_image":false,"color_scheme":"scheme-1"}},"main-collection-product-grid":{"type":"main-collection-product-grid","settings":{"products_per_page":16,"columns_desktop":4,"columns_mobile":"2","color_scheme":"scheme-1","image_ratio":"portrait","image_shape":"default","show_secondary_image":false,"show_vendor":false,"show_rating":false,"quick_add":"none","enable_filtering":true,"filter_type":"horizontal","enable_sorting":true,"padding_top":20,"padding_bottom":68}},"custom_liquid_7hmiK7":{"type":"custom-liquid","name":"t:sections.custom-liquid.presets.name","settings":{"custom_liquid":"<div style=\"margin: 10px 0;\">\n  <button\n    class=\"btn btn--secondary isense-reopen-widget-button\"\n    onclick=\"showPreferences(this); event.preventDefault();\"\n    aria-haspopup=\"dialog\"\n    style=\"\n      background: transparent;\n      border: 1px solid currentColor;\n      color: inherit;\n      width: 36px;\n      height: 36px;\n      border-radius: 50%;\n      font-size: 16px;\n      cursor: pointer;\n      opacity: 0.7;\n      transition: opacity 0.2s ease;\n      display: flex;\n      align-items: center;\n      justify-content: center;\n      padding: 0;\n    \"\n    onmouseover=\"this.style.opacity='1'\"\n    onmouseout=\"this.style.opacity='0.7'\"\n    title=\"Cookie Einstellungen\"\n  >\n    🍪\n  <\/button>\n<\/div>","color_scheme":"","padding_top":40,"padding_bottom":52}}},"order":["main-collection-banner","main-collection-product-grid","custom_liquid_7hmiK7"]}
+{
+  "sections": {
+    "florice_banner": {
+      "type": "florice-collection-banner",
+      "settings": {
+        "kicker": "Kollektion · Florice",
+        "show_description": true,
+        "color_scheme": "scheme-1",
+        "padding_top": 80,
+        "padding_bottom": 32
+      }
+    },
+    "main-collection-product-grid": {
+      "type": "main-collection-product-grid",
+      "settings": {
+        "products_per_page": 16,
+        "columns_desktop": 3,
+        "columns_mobile": "2",
+        "color_scheme": "scheme-1",
+        "image_ratio": "portrait",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "standard",
+        "enable_filtering": true,
+        "filter_type": "horizontal",
+        "enable_sorting": true,
+        "padding_top": 20,
+        "padding_bottom": 100
+      }
+    },
+    "pullquote_bridge": {
+      "type": "florice-pullquote",
+      "settings": {
+        "quote": "<p>Aus einem Faden wird eine Blüte. Aus vielen Blüten wird ein <em>Andenken.</em></p>",
+        "attribution": "Florice Atelier",
+        "attribution_meta": "",
+        "color_scheme": "scheme-2",
+        "padding_top": 120,
+        "padding_bottom": 120
+      }
+    },
+    "custom_liquid_7hmiK7": {
+      "type": "custom-liquid",
+      "name": "t:sections.custom-liquid.presets.name",
+      "settings": {
+        "custom_liquid": "<div style=\"margin: 10px 0;\">\n  <button\n    class=\"btn btn--secondary isense-reopen-widget-button\"\n    onclick=\"showPreferences(this); event.preventDefault();\"\n    aria-haspopup=\"dialog\"\n    style=\"\n      background: transparent;\n      border: 1px solid currentColor;\n      color: inherit;\n      width: 36px;\n      height: 36px;\n      border-radius: 50%;\n      font-size: 16px;\n      cursor: pointer;\n      opacity: 0.7;\n      transition: opacity 0.2s ease;\n      display: flex;\n      align-items: center;\n      justify-content: center;\n      padding: 0;\n    \"\n    onmouseover=\"this.style.opacity='1'\"\n    onmouseout=\"this.style.opacity='0.7'\"\n    title=\"Cookie Einstellungen\"\n  >\n    🍪\n  </button>\n</div>",
+        "color_scheme": "",
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    }
+  },
+  "order": [
+    "florice_banner",
+    "main-collection-product-grid",
+    "pullquote_bridge",
+    "custom_liquid_7hmiK7"
+  ]
+}

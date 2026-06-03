@@ -1,0 +1,286 @@
+<div
+  class="florice-news color-{{ section.settings.color_scheme }} gradient"
+  style="
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  "
+>
+  <div class="florice-news__inner page-width">
+    <div class="florice-news__head">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="florice-news__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+      {%- endif -%}
+      {%- if section.settings.title != blank -%}
+        <h2 class="florice-news__title">{{ section.settings.title }}</h2>
+      {%- endif -%}
+      {%- if section.settings.subtext != blank -%}
+        <div class="florice-news__sub rte">{{ section.settings.subtext }}</div>
+      {%- endif -%}
+    </div>
+
+    <div class="florice-news__form-wrap">
+      {%- form 'customer', class: 'florice-news__form' -%}
+        <input type="hidden" name="contact[tags]" value="newsletter">
+        <label class="visually-hidden" for="FloriceNewsletter">{{ 'newsletter.label' | t }}</label>
+        <input
+          id="FloriceNewsletter"
+          type="email"
+          name="contact[email]"
+          value="{{ form.email }}"
+          autocorrect="off"
+          autocapitalize="off"
+          autocomplete="email"
+          placeholder="{{ section.settings.placeholder | default: 'Deine E-Mail-Adresse' | escape }}"
+          required
+        >
+        <button type="submit" class="florice-news__submit" name="commit">
+          <span>{{ section.settings.button_label | default: 'Abonnieren' | escape }}</span>
+          <span aria-hidden="true">→</span>
+        </button>
+        {%- if form.posted_successfully? -%}
+          <p class="florice-news__msg florice-news__msg--success" tabindex="-1">
+            {{ 'newsletter.success' | t }}
+          </p>
+        {%- elsif form.errors -%}
+          <p class="florice-news__msg florice-news__msg--error" tabindex="-1">
+            {{ form.errors.translated_fields.email | capitalize }}
+            {{ form.errors.messages.email }}
+          </p>
+        {%- endif -%}
+      {%- endform -%}
+
+      {%- if section.settings.fine_print != blank -%}
+        <p class="florice-news__fine">{{ section.settings.fine_print | escape }}</p>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+.florice-news {
+  position: relative;
+  overflow: hidden;
+}
+
+.florice-news__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: center;
+}
+
+.florice-news__head {
+  max-width: 42rem;
+}
+
+.florice-news__eyebrow {
+  font-size: 1.1rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin: 0 0 1.8rem;
+  opacity: 0.65;
+  font-weight: 500;
+}
+
+.florice-news__title {
+  font-family: var(--font-heading-family);
+  font-weight: 300;
+  font-size: clamp(3.2rem, 4.8vw, 5.8rem);
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+  margin: 0 0 2rem;
+  color: rgb(var(--color-foreground));
+}
+
+.florice-news__title em {
+  font-style: italic;
+  font-weight: 300;
+}
+
+.florice-news__sub {
+  font-size: 1.55rem;
+  line-height: 1.6;
+  opacity: 0.78;
+}
+
+.florice-news__sub p { margin: 0 0 1rem; }
+.florice-news__sub p:last-child { margin-bottom: 0; }
+
+.florice-news__form-wrap {
+  width: 100%;
+}
+
+.florice-news__form {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  border-bottom: 1px solid rgb(var(--color-foreground));
+  padding-bottom: 0.6rem;
+}
+
+.florice-news__form input[type="email"] {
+  flex: 1;
+  background: transparent;
+  border: 0;
+  outline: none;
+  font-family: inherit;
+  font-size: 1.7rem;
+  padding: 1rem 0;
+  color: rgb(var(--color-foreground));
+  letter-spacing: 0.01em;
+}
+
+.florice-news__form input[type="email"]::placeholder {
+  color: rgb(var(--color-foreground));
+  opacity: 0.45;
+}
+
+.florice-news__submit {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: transparent;
+  border: 0;
+  color: rgb(var(--color-foreground));
+  font-family: inherit;
+  font-size: 1.15rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0 0 0 2rem;
+}
+
+.florice-news__submit span:last-child {
+  font-size: 1.5rem;
+  transition: transform 0.25s ease;
+}
+
+.florice-news__submit:hover span:last-child {
+  transform: translateX(5px);
+}
+
+.florice-news__msg {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin: 0.8rem 0 0;
+  font-size: 1.2rem;
+  letter-spacing: 0.04em;
+}
+
+.florice-news__msg--error {
+  color: #b04040;
+}
+
+.florice-news__fine {
+  margin: 1.6rem 0 0;
+  font-size: 1.1rem;
+  letter-spacing: 0.04em;
+  opacity: 0.55;
+  font-style: italic;
+}
+
+@media screen and (max-width: 989px) {
+  .florice-news__inner {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  .florice-news__title {
+    font-size: clamp(2.6rem, 8vw, 3.8rem);
+  }
+}
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Florice Newsletter",
+  "tag": "section",
+  "class": "section section-florice-news",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Inhalt"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Brief aus dem Atelier"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "Titel",
+      "default": "Was als nächstes <em>blüht.</em>"
+    },
+    {
+      "type": "richtext",
+      "id": "subtext",
+      "label": "Sub-Text",
+      "default": "<p>Sechs Briefe im Jahr. Neue Kollektionen zuerst, ein Blick in den Wickeltisch und der gelegentliche Rabatt — kein Spam, kein Daily-Sale.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Formular"
+    },
+    {
+      "type": "text",
+      "id": "placeholder",
+      "label": "Placeholder",
+      "default": "Deine E-Mail-Adresse"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button-Text",
+      "default": "Abonnieren"
+    },
+    {
+      "type": "text",
+      "id": "fine_print",
+      "label": "Kleingedrucktes",
+      "default": "Abmeldung jederzeit mit einem Klick. Datenschutz selbstverständlich."
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Farb-Schema",
+      "default": "scheme-3"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 240,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding oben",
+      "default": 120
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 240,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding unten",
+      "default": 120
+    }
+  ],
+  "presets": [
+    {
+      "name": "Florice Newsletter",
+      "category": "Florice"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,109 @@
+<div
+  class="florice-issuebar color-{{ section.settings.color_scheme }} gradient"
+  role="region"
+  aria-label="Issue"
+>
+  <div class="florice-issuebar__inner">
+    <span class="florice-issuebar__mark">{{ section.settings.mark | escape }}</span>
+    <span class="florice-issuebar__sep" aria-hidden="true">·</span>
+    <span class="florice-issuebar__title">{{ section.settings.title | escape }}</span>
+    <span class="florice-issuebar__sep" aria-hidden="true">·</span>
+    <span class="florice-issuebar__meta">{{ section.settings.meta | escape }}</span>
+  </div>
+</div>
+
+{% stylesheet %}
+.florice-issuebar {
+  border-bottom: 1px solid rgb(var(--color-foreground) / 0.12);
+}
+
+.florice-issuebar__inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+  padding: 1.1rem 2rem;
+  font-size: 1.05rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: rgb(var(--color-foreground));
+}
+
+.florice-issuebar__mark {
+  font-family: var(--font-heading-family);
+  font-style: italic;
+  letter-spacing: 0.08em;
+  text-transform: none;
+  font-size: 1.25rem;
+  opacity: 0.95;
+}
+
+.florice-issuebar__sep {
+  opacity: 0.4;
+}
+
+.florice-issuebar__title {
+  opacity: 0.85;
+}
+
+.florice-issuebar__meta {
+  opacity: 0.65;
+}
+
+@media screen and (max-width: 749px) {
+  .florice-issuebar__inner {
+    padding: 0.9rem 1.5rem;
+    font-size: 0.95rem;
+    letter-spacing: 0.18em;
+    gap: 0.8rem;
+  }
+  .florice-issuebar__sep {
+    display: none;
+  }
+  .florice-issuebar__meta {
+    display: none;
+  }
+}
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Florice Issue Bar",
+  "tag": "section",
+  "class": "section section-florice-issuebar",
+  "settings": [
+    {
+      "type": "text",
+      "id": "mark",
+      "label": "Issue-Marker",
+      "default": "No. 01"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Titel",
+      "default": "Spring Editorial"
+    },
+    {
+      "type": "text",
+      "id": "meta",
+      "label": "Meta-Zeile",
+      "default": "Handgefertigt in Deutschland"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Farb-Schema",
+      "default": "scheme-2"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Florice Issue Bar",
+      "category": "Florice"
+    }
+  ]
+}
+{% endschema %}
