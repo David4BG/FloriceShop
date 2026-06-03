@@ -25,7 +25,7 @@
           "settings": {
             "kicker": "Sortiment",
             "title": "Hochzeit",
-            "link": "shopify://collections/hochzeit"
+            "link": "shopify://collections/all"
           }
         },
         "tile_geschenk": {
@@ -33,7 +33,7 @@
           "settings": {
             "kicker": "Sortiment",
             "title": "Geschenk",
-            "link": "shopify://collections/geschenke"
+            "link": "shopify://collections/all"
           }
         },
         "tile_trauer": {
@@ -41,7 +41,7 @@
           "settings": {
             "kicker": "Sortiment",
             "title": "Trauer",
-            "link": "shopify://collections/trauer"
+            "link": "shopify://collections/all"
           }
         },
         "tile_wohnen": {
@@ -49,7 +49,7 @@
           "settings": {
             "kicker": "Sortiment",
             "title": "Wohnen",
-            "link": "shopify://collections/wohnen"
+            "link": "shopify://collections/all"
           }
         }
       },
@@ -163,7 +163,7 @@
         "description": "",
         "show_description": false,
         "description_style": "body",
-        "collection": "frontpage",
+        "collection": "all",
         "products_to_show": 4,
         "columns_desktop": 4,
         "full_width": false,
