@@ -198,7 +198,6 @@
   },
   "order": [
     "main",
-    "product_meta",
     "pullquote_bridge",
     "related-products",
     "atelier_story",
