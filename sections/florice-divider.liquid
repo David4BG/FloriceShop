@@ -1,0 +1,131 @@
+<div
+  class="florice-div color-{{ section.settings.color_scheme }} gradient"
+  style="
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  "
+>
+  <div class="florice-div__inner page-width">
+    {%- if section.settings.label != blank -%}
+      <span class="florice-div__label">{{ section.settings.label | escape }}</span>
+    {%- endif -%}
+    <div class="florice-div__art" aria-hidden="true">
+      {% render 'florice-bloom', type: section.settings.style %}
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+.florice-div {
+  position: relative;
+}
+
+.florice-div__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.florice-div__label {
+  font-size: 1rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  font-weight: 500;
+  opacity: 0.55;
+}
+
+.florice-div__art {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  color: rgb(var(--color-foreground));
+  opacity: 0.6;
+}
+
+.florice-div__art .florice-bloom--garland {
+  max-width: 64rem;
+}
+
+.florice-div__art .florice-bloom--divider {
+  max-width: 24rem;
+}
+
+.florice-div__art .florice-bloom--sprig {
+  width: 2.4rem;
+  height: 3.2rem;
+}
+
+@media screen and (max-width: 749px) {
+  .florice-div__art .florice-bloom--garland {
+    max-width: 100%;
+  }
+}
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Florice Divider",
+  "tag": "section",
+  "class": "section section-florice-div",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "select",
+      "id": "style",
+      "label": "Stil",
+      "options": [
+        { "value": "garland", "label": "Garland (breite Blumengirlande)" },
+        { "value": "divider", "label": "Divider (kurze Linie + Blüte)" },
+        { "value": "sprig", "label": "Sprig (einzelne Blüte)" }
+      ],
+      "default": "garland"
+    },
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Label (optional, kleiner Caps-Text über Garland)"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Farb-Schema",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding oben",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding unten",
+      "default": 32
+    }
+  ],
+  "presets": [
+    {
+      "name": "Florice Divider — Garland",
+      "category": "Florice",
+      "settings": { "style": "garland" }
+    },
+    {
+      "name": "Florice Divider — Sprig",
+      "category": "Florice",
+      "settings": { "style": "sprig" }
+    }
+  ]
+}
+{% endschema %}

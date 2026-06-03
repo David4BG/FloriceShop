@@ -5,6 +5,13 @@
     padding-bottom: {{ section.settings.padding_bottom }}px;
   "
 >
+  <div class="florice-sortiment__scatter" aria-hidden="true">
+    <span class="florice-sortiment__sb florice-sortiment__sb--tl">{% render 'florice-bloom', type: 'wildflower' %}</span>
+    <span class="florice-sortiment__sb florice-sortiment__sb--tr">{% render 'florice-bloom', type: 'tulip' %}</span>
+    <span class="florice-sortiment__sb florice-sortiment__sb--bl">{% render 'florice-bloom', type: 'branch' %}</span>
+    <span class="florice-sortiment__sb florice-sortiment__sb--br">{% render 'florice-bloom', type: 'sprig' %}</span>
+  </div>
+
   <div class="florice-sortiment__head page-width">
     {%- if section.settings.eyebrow != blank -%}
       <p class="florice-sortiment__eyebrow">
@@ -77,6 +84,70 @@
 {% stylesheet %}
 .florice-sortiment {
   position: relative;
+  overflow: hidden;
+}
+
+.florice-sortiment__scatter {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  color: rgb(var(--color-foreground));
+  z-index: 0;
+}
+
+.florice-sortiment__sb {
+  position: absolute;
+  opacity: 0.13;
+  display: block;
+}
+
+.florice-sortiment__sb--tl {
+  top: 6%;
+  left: 4%;
+  width: 5.2rem;
+  transform: rotate(-15deg);
+}
+
+.florice-sortiment__sb--tr {
+  top: 12%;
+  right: 5%;
+  width: 5rem;
+  transform: rotate(20deg);
+}
+
+.florice-sortiment__sb--bl {
+  bottom: 10%;
+  left: 6%;
+  width: 5.4rem;
+  transform: rotate(8deg);
+}
+
+.florice-sortiment__sb--br {
+  bottom: 6%;
+  right: 4%;
+  width: 5rem;
+  transform: rotate(-12deg);
+}
+
+.florice-sortiment__head,
+.florice-sortiment__grid {
+  position: relative;
+  z-index: 1;
+}
+
+@media screen and (max-width: 749px) {
+  .florice-sortiment__sb {
+    width: 3.6rem !important;
+    opacity: 0.1;
+  }
+  .florice-sortiment__sb--tl,
+  .florice-sortiment__sb--tr {
+    top: 3%;
+  }
+  .florice-sortiment__sb--bl,
+  .florice-sortiment__sb--br {
+    bottom: 3%;
+  }
 }
 
 .florice-sortiment__head {

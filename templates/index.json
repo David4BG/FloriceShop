@@ -13,8 +13,8 @@
         "image_position": "left",
         "image_caption": "Ewige Sonnenblumen · Strauß No. 14",
         "color_scheme": "scheme-1",
-        "padding_top": 64,
-        "padding_bottom": 96
+        "padding_top": 48,
+        "padding_bottom": 72
       }
     },
     "anlaesse": {
@@ -59,8 +59,8 @@
         "title": "Sträuße, die <em>bleiben.</em>",
         "intro": "<p>Vier Sammlungen aus der Werkstatt — jede für einen besonderen Moment komponiert.</p>",
         "color_scheme": "scheme-7",
-        "padding_top": 96,
-        "padding_bottom": 96
+        "padding_top": 60,
+        "padding_bottom": 60
       }
     },
     "sortiment": {
@@ -141,8 +141,18 @@
         "intro": "<p>Jede Sorte mit eigenem Charakter und eigener Bedeutung. Handgewickelt nach botanischem Vorbild — und für immer.</p>",
         "item_cta": "Ansehen",
         "color_scheme": "scheme-6",
-        "padding_top": 96,
-        "padding_bottom": 96
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "divider_featured": {
+      "type": "florice-divider",
+      "settings": {
+        "style": "garland",
+        "label": "Aus unserer Werkstatt",
+        "color_scheme": "scheme-1",
+        "padding_top": 36,
+        "padding_bottom": 12
       }
     },
     "featured_collection": {
@@ -169,8 +179,8 @@
         "quick_add": "standard",
         "columns_mobile": "2",
         "swipe_on_mobile": true,
-        "padding_top": 100,
-        "padding_bottom": 100
+        "padding_top": 60,
+        "padding_bottom": 60
       }
     },
     "atelier_story": {
@@ -188,8 +198,8 @@
         "link_label": "So entsteht eine Florice",
         "link_url": "",
         "color_scheme": "scheme-3",
-        "padding_top": 120,
-        "padding_bottom": 120
+        "padding_top": 72,
+        "padding_bottom": 72
       }
     },
     "pullquote": {
@@ -199,8 +209,8 @@
         "attribution": "Florice Atelier",
         "attribution_meta": "Manufaktur · Deutschland",
         "color_scheme": "scheme-9",
-        "padding_top": 120,
-        "padding_bottom": 120
+        "padding_top": 88,
+        "padding_bottom": 88
       }
     },
     "split_material": {
@@ -220,8 +230,8 @@
         "image_caption": "Atelier-Tisch · Tageslicht",
         "layout": "right",
         "color_scheme": "scheme-8",
-        "padding_top": 96,
-        "padding_bottom": 96
+        "padding_top": 60,
+        "padding_bottom": 60
       }
     },
     "faq": {
@@ -276,8 +286,8 @@
         "open_first_collapsible_row": false,
         "image_ratio": "adapt",
         "desktop_layout": "image_second",
-        "padding_top": 100,
-        "padding_bottom": 60
+        "padding_top": 60,
+        "padding_bottom": 32
       }
     },
     "newsletter": {
@@ -290,8 +300,8 @@
         "button_label": "Abonnieren",
         "fine_print": "Abmeldung jederzeit mit einem Klick. Datenschutz selbstverständlich.",
         "color_scheme": "scheme-9",
-        "padding_top": 120,
-        "padding_bottom": 120
+        "padding_top": 80,
+        "padding_bottom": 80
       }
     },
     "custom_liquid_kR9yie": {
@@ -299,8 +309,8 @@
       "settings": {
         "custom_liquid": "<div style=\"margin: 10px 0;\">\n  <button\n    class=\"btn btn--secondary isense-reopen-widget-button\"\n    onclick=\"showPreferences(this); event.preventDefault();\"\n    aria-haspopup=\"dialog\"\n    style=\"\n      background: transparent;\n      border: 1px solid currentColor;\n      color: inherit;\n      width: 36px;\n      height: 36px;\n      border-radius: 50%;\n      font-size: 16px;\n      cursor: pointer;\n      opacity: 0.7;\n      transition: opacity 0.2s ease;\n      display: flex;\n      align-items: center;\n      justify-content: center;\n      padding: 0;\n    \"\n    onmouseover=\"this.style.opacity='1'\"\n    onmouseout=\"this.style.opacity='0.7'\"\n    title=\"Cookie Einstellungen\"\n  >\n    🍪\n  </button>\n</div>",
         "color_scheme": "",
-        "padding_top": 40,
-        "padding_bottom": 40
+        "padding_top": 24,
+        "padding_bottom": 24
       }
     }
   },
@@ -308,6 +318,7 @@
     "hero_banner",
     "anlaesse",
     "sortiment",
+    "divider_featured",
     "featured_collection",
     "atelier_story",
     "pullquote",

@@ -5,6 +5,11 @@
     padding-bottom: {{ section.settings.padding_bottom }}px;
   "
 >
+  <div class="florice-anlaesse__scatter" aria-hidden="true">
+    <span class="florice-anlaesse__sb florice-anlaesse__sb--l">{% render 'florice-bloom', type: 'peony' %}</span>
+    <span class="florice-anlaesse__sb florice-anlaesse__sb--r">{% render 'florice-bloom', type: 'rose-stem' %}</span>
+  </div>
+
   <div class="florice-anlaesse__head page-width">
     {%- if section.settings.eyebrow != blank -%}
       <p class="florice-anlaesse__eyebrow">
@@ -87,6 +92,47 @@
 {% stylesheet %}
 .florice-anlaesse {
   position: relative;
+  overflow: hidden;
+}
+
+.florice-anlaesse__scatter {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  color: rgb(var(--color-foreground));
+  z-index: 0;
+}
+
+.florice-anlaesse__sb {
+  position: absolute;
+  opacity: 0.14;
+  display: block;
+  width: 6rem;
+}
+
+.florice-anlaesse__sb--l {
+  top: 8%;
+  left: 3%;
+  transform: rotate(-18deg);
+}
+
+.florice-anlaesse__sb--r {
+  top: 6%;
+  right: 3%;
+  transform: rotate(22deg);
+}
+
+.florice-anlaesse__head,
+.florice-anlaesse__grid {
+  position: relative;
+  z-index: 1;
+}
+
+@media screen and (max-width: 749px) {
+  .florice-anlaesse__sb {
+    width: 3.8rem;
+    opacity: 0.1;
+  }
 }
 
 .florice-anlaesse__head {

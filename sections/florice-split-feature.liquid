@@ -5,6 +5,13 @@
     padding-bottom: {{ section.settings.padding_bottom }}px;
   "
 >
+  <div class="florice-split__deco florice-split__deco--corner" aria-hidden="true">
+    {% render 'florice-bloom', type: 'sunflower' %}
+  </div>
+  <div class="florice-split__deco florice-split__deco--accent" aria-hidden="true">
+    {% render 'florice-bloom', type: 'wildflower' %}
+  </div>
+
   <div class="florice-split__inner page-width">
     <div class="florice-split__media">
       {%- if section.settings.image != blank -%}
@@ -66,6 +73,57 @@
 .florice-split {
   position: relative;
   overflow: hidden;
+}
+
+.florice-split__deco {
+  position: absolute;
+  pointer-events: none;
+  color: rgb(var(--color-foreground));
+  z-index: 0;
+}
+
+.florice-split__deco--corner {
+  top: 6%;
+  right: 3%;
+  width: 6rem;
+  opacity: 0.17;
+  transform: rotate(15deg);
+}
+
+.florice-split__deco--accent {
+  bottom: 4%;
+  left: 4%;
+  width: 5rem;
+  opacity: 0.15;
+  transform: rotate(-18deg);
+}
+
+.florice-split--right .florice-split__deco--corner {
+  right: auto;
+  left: 3%;
+  transform: rotate(-15deg);
+}
+
+.florice-split--right .florice-split__deco--accent {
+  left: auto;
+  right: 4%;
+  transform: rotate(18deg);
+}
+
+.florice-split__inner {
+  position: relative;
+  z-index: 1;
+}
+
+@media screen and (max-width: 989px) {
+  .florice-split__deco--corner {
+    width: 4.4rem;
+    opacity: 0.12;
+  }
+  .florice-split__deco--accent {
+    width: 4rem;
+    opacity: 0.12;
+  }
 }
 
 .florice-split__inner {
